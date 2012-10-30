@@ -1,0 +1,46 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/0.8.12/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   '-g',
+1 verbose cli   'install',
+1 verbose cli   'cake' ]
+2 info using npm@1.1.63
+3 info using node@v0.8.12
+4 verbose read json /usr/local/share/npm/lib/package.json
+5 verbose read json /usr/local/share/npm/lib/package.json
+6 verbose cache add [ 'cake', null ]
+7 silly cache add name=undefined spec="cake" args=["cake",null]
+8 verbose parsed url { pathname: 'cake', path: 'cake', href: 'cake' }
+9 silly lockFile 5ddc2ae1-cake cake
+10 verbose lock cake /Users/wan/.npm/5ddc2ae1-cake.lock
+11 silly lockFile 5ddc2ae1-cake cake
+12 verbose addNamed [ 'cake', '' ]
+13 verbose addNamed [ null, '' ]
+14 silly lockFile 2174a64b-cake cake@
+15 verbose lock cake@ /Users/wan/.npm/2174a64b-cake.lock
+16 silly addNameRange { name: 'cake', range: '', hasData: false }
+17 verbose url raw cake
+18 verbose url resolving [ 'https://registry.npmjs.org/', './cake' ]
+19 verbose url resolved https://registry.npmjs.org/cake
+20 info trying registry request attempt 1 at 18:07:34
+21 http GET https://registry.npmjs.org/cake
+22 http 404 https://registry.npmjs.org/cake
+23 silly registry.get cb [ 404,
+23 silly registry.get   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+23 silly registry.get     date: 'Fri, 26 Oct 2012 10:07:33 GMT',
+23 silly registry.get     'content-type': 'application/json',
+23 silly registry.get     'content-length': '52',
+23 silly registry.get     'cache-control': 'must-revalidate' } ]
+24 silly lockFile 2174a64b-cake cake@
+25 error 404 'cake' is not in the npm registry.
+25 error 404 You should bug the author to publish it
+25 error 404
+25 error 404 Note that you can also install from a
+25 error 404 tarball, folder, or http url, or git url.
+26 error System Darwin 11.4.2
+27 error command "/usr/local/Cellar/node/0.8.12/bin/node" "/usr/local/bin/npm" "-g" "install" "cake"
+28 error cwd /Users/wan/dev/jscss/angular/qv-ngnew
+29 error node -v v0.8.12
+30 error npm -v 1.1.63
+31 error code E404
+32 verbose exit [ 1, true ]

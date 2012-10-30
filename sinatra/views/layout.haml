@@ -1,0 +1,17 @@
+!!!
+%html(lang="en")
+  %head
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+    %meta(name="viewport" content="width=device-width,initial-scale=1")
+    %title(ng-bind-template="QuranVue &middot; {{pageTitle}}")
+
+    / Application styles.
+    %link(rel="stylesheet" href="/assets/css/app.css?v=#{Time.now.to_i}")
+
+    - if @main
+      / Application source.
+      %script(data-main="/assets/js/main.js" src="/assets/js/libs/require.js")
+
+  %body(class="#{@body_class}" ng-cloak)
+    = yield

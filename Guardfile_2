@@ -1,0 +1,4 @@
+# watch changes for livereloading
+guard 'livereload' do
+  watch(%r{.+\.(rb|html|haml|scss|coffee)})
+end

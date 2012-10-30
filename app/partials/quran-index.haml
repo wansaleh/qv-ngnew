@@ -1,0 +1,65 @@
+.index-wrapper
+
+  .page-header.fixed
+    .container
+      .row
+        .span12
+          %h1
+            %a(my-href="/")
+              QuranVue
+              %small Bismillahirrahmanirrahim
+              / %small.arab بسْم ٱللّه ٱلرّحْمٰن ٱلرّحيم
+
+          .links
+            .btn-group.sort
+              %abtn(type="primary small" ng-click="toggleSorting()")
+                %i.icon-sort
+
+              %abtn(type="primary small" ng-class="{active: isSorting('id')}" ng-click="changeSorting('id')")
+                Order&nbsp;
+                %i.icon-caret-up(ng-show="isSorting('id', false)")
+                %i.icon-caret-down(ng-show="isSorting('id', true)")
+
+              %abtn(type="primary small" ng-class="{active: isSorting('tname')}" ng-click="changeSorting('tname')")
+                Name&nbsp;
+                %i.icon-caret-up(ng-show="isSorting('tname', false)")
+                %i.icon-caret-down(ng-show="isSorting('tname', true)")
+
+              %abtn(type="primary small" ng-class="{active: isSorting('order')}" ng-click="changeSorting('order')")
+                Revealed&nbsp;
+                %i.icon-caret-up(ng-show="isSorting('order', false)")
+                %i.icon-caret-down(ng-show="isSorting('order', true)")
+
+              %abtn(type="primary small" ng-class="{active: isSorting('ayas')}" ng-click="changeSorting('ayas', true)")
+                Ayas&nbsp;
+                %i.icon-caret-up(ng-show="isSorting('ayas', false)")
+                %i.icon-caret-down(ng-show="isSorting('ayas', true)")
+
+  .container
+    .row
+      .span6
+        .sura-count(ng-show="filtered.length < 114")
+          %i.icon-info-sign
+          %strong {{filtered.length}}
+          suras found for "{{search}}".
+
+      .span6
+        .search
+          / %input.input-mini(type="text" placeholder="Sura ID" ng-model="search.id" ng-maxlength="3")
+          %input(type="text" placeholder="Search sura&hellip;" ng-model="search")>
+          %btn.clear-input(btn ng-click="clearSearch()" ng-show="search != ''")
+            %i.icon-remove-circle
+
+    .row
+      .span12
+        %nav.suras
+          %ul
+            %li(ng-repeat="sura in filtered = (suras.result | filter:suraFilter() | orderBy:sort.attr:sort.desc)")
+              %a(my-href="{{sura | permalink}}")
+                .primary
+                  %span.id {{sura.id | pad}}
+                  %span.tname {{sura.tname}}
+                  %span.arab {{sura.name}}
+                .secondary
+                  %span.ename {{sura.ename | truncate:20}}
+                  %span.ayas {{sura.ayas}} ayas, {{sura.order | ordinal}}

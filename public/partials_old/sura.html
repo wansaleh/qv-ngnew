@@ -1,0 +1,71 @@
+<div class="ayas-wrapper">
+
+  <div class="page-header fixed">
+    <div class="container">
+      <div class="row">
+        <div class="span8">
+          <h1>
+            <a href="/#">
+              {{suraInfo.tname}}
+              <small>{{suraInfo.ename}}</small>
+              <small class="arab">{{suraInfo.name}}</small>
+            </a>
+          </h1>
+        </div>
+        <div class="span4">
+          <div class="links">
+
+            <a href="{{suraInfo | prevlink}}" ng-show="suraInfo | prevlink">Previous</a>
+            <span class="muted" ng-hide="suraInfo | prevlink">Previous</span>
+
+            <a href="{{suraInfo | nextlink}}" ng-show="suraInfo | nextlink">Next</a>
+            <span class="muted" ng-hide="suraInfo | nextlink">Next</span>
+
+            <a class="home btn btn-primary btn-small" href="/#">
+              <i class="icon-home"></i>
+              Home
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ayas-container">
+
+    <div class="bismillah" ng-hide="suraInfo.id == 1">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <!-- <div class="image"><img src="/assets/images/ayas/bismillah-center.png" alt=""></div> -->
+            <h2 class="center">
+              <span class="arab">بسم ٱلله ٱلرحمٰن ٱلرحيم</span>
+            </h2>
+            <h2 class="translation center">
+              Bismillahirrahmanirrahim<br>
+              <small>In the name of Allah, the Entirely Merciful, the Especially Merciful.</small>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ayas">
+      <div class="aya-wrapper" ng-repeat="aya in ayas.result">
+        <div class="container">
+          <div class="row">
+            <div class="span12">
+              <p class="text arab">
+                {{aya | ayatext}}
+                <span class="number">{{aya.aya | arab}}</span>
+              </p>
+              <p class="translation">{{aya.translation}} <strong>[{{aya.aya}}]</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

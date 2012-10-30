@@ -1,0 +1,17 @@
+#error
+  .container
+    .row
+      .span12
+        .hero-unit
+          %h1
+            Oopsie.
+
+          %p
+            - if @error
+              = @error
+            - else
+              Sorry. The file you requsted was not found.
+
+          %a.btn.btn-large.btn-danger(href="/")
+            %i.icon-home
+            Home

@@ -1,0 +1,347 @@
+@import "partials/base";
+
+// =================================================================================================
+// Body and structure
+// =================================================================================================
+
+html {
+  height: 100%;
+  font-size: $baseFontSize;
+}
+body {
+  position: relative;
+  height: 100%;
+  background: #fff url(/assets/img/groovepaper.png);
+  font-weight: 300;
+  font-size: 1rem;
+  @include text-shadow(1px 1px 0 rgba(#fff, 1));
+}
+
+// =================================================================================================
+// Utility classes
+// =================================================================================================
+
+.center {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.fixed {
+  position: fixed !important;
+}
+
+.muted {
+  // color: lighten($grayLight, 15%);
+}
+
+.arab {
+  font-size: 1.1em;
+  font-family: 'Scheherazade';
+  line-height: .8;
+  direction: rtl;
+}
+
+.spacer1 {
+  @include clearfix;
+}
+@for $i from 1 through 15 {
+  .spacer#{$i} {
+    @extend .spacer1;
+    min-height: #{$i}rem;
+  }
+}
+
+// =================================================================================================
+// Main styles
+// =================================================================================================
+
+#main {
+  padding: 0 0 5rem;
+}
+
+#error {
+  padding: 5rem 0;
+}
+
+.page-header {
+  @include transition(top .7s ceaser('easeInOutQuart'));
+  @include box-shadow(0 3px 20px rgba(#000, .2));
+  position: relative;
+  top: 0;
+  margin-top: 0;
+  padding: 20px 0;
+  width: 100%;
+  border: 0;
+  background: #fff url(/assets/img/bright_squares.png);
+  z-index: 10;
+
+  &.slideup {
+    top: -4rem;
+  }
+
+  h1 {
+    // @include text-shadow(1px 1px 0 rgba(#fff, .9));
+    // @include text-shadow(0 0 2px rgba($grayDark,.8));
+    float: left;
+    margin: 0;
+    a {
+      display: inline-block;
+      color: $textColor;
+      text-decoration: none;
+    }
+    small {
+      display: inline-block;
+      margin-left: 10px;
+      font-size: .7em;
+    }
+    small.arab {
+      font-size: 1em;
+    }
+    small.info {
+      color: lighten($grayLight, 20%);
+    }
+  }
+
+  .links {
+    float: right;
+    margin-top: 8px;
+
+    .btn-group, .non-btn-group {
+      display: inline-block;
+    }
+
+    a, .muted, .btn {
+      padding: 2px 12px 3px;
+      font-size: 13px;
+    }
+
+    .non-btn-group {
+      @include text-shadow(1px 1px 0 rgba(#fff, .9));
+      padding-right: 8px;
+
+      a, span {
+        display: inline-block;
+        padding: 2px 8px 3px;
+      }
+
+      a {
+        padding: 2px 8px 1px;
+        border-bottom: 3px solid transparent;
+        color: $textColor;
+        font-weight: bold;
+        text-decoration: none;
+        @include border-radius(3px 3px 0 0);
+
+        &:hover {
+          border-bottom-color: $linkColor;
+          color: $linkColor;
+          background-color: rgba(#fff, .5);
+        }
+      }
+    }
+
+    .muted {
+      padding-left: 0;
+    }
+
+    .btn {
+      margin-right: 0;
+    }
+  }
+}
+
+.index-wrapper {
+  position: relative;
+  padding-top: 92px;
+
+  .sura-count {
+    margin-top: 5px;
+  }
+
+  .search {
+    position: relative;
+    display: inline-block;
+    float: right;
+    margin-right: 2px;
+
+    input {
+      position: relative;
+      right: 0;
+      z-index: 1;
+      display: block;
+      padding-right: 30px;
+      font-size: .8rem;
+    }
+    button.clear-input {
+      @include box-shadow(none);
+      position: absolute;
+      top: 6px;
+      right: 5px;
+      z-index: 2;
+      padding: 0 3px;
+      border: none;
+      background: none;
+    }
+  }
+
+  .suras {
+    padding-bottom: 3rem;
+    font-size: .9rem;
+
+    ul {
+      list-style: none;
+      margin: 0;
+
+      li {
+        display: inline-block;
+
+        a {
+          // @include transition(all .3s);
+          @include border-radius(4px);
+          // @include box-shadow(inset 0 2px 10px rgba(#aaa, .3));
+          // @include text-shadow(1px 1px 0 rgba(#fff, .9));
+          display: inline-block;
+          margin: 0 2px 4px;
+          padding: 4px 9px;
+          width: 213px;
+          background-color: rgba(#aaa, .1);
+          color: $gray;
+          text-decoration: none;
+          white-space: nowrap;
+
+          .primary {
+            span {
+              display: inline-block;
+            }
+            .id {
+              margin-right: 5px;
+              font-weight: bold;
+            }
+            .arab {
+              float: right;
+              margin-top: 3px;
+              color: $grayLight;
+              font-size: 1.25em;
+            }
+          }
+
+          .secondary {
+            color: $grayLight;
+            font-size: .8em;
+            line-height: 1.5;
+            span {
+              display: inline-block;
+            }
+            .ename {
+              font-style: italic;
+            }
+            .ayas {
+              float: right;
+            }
+          }
+
+          &:hover {
+            @include text-shadow(0 2px 5px rgba(#000, .5), 0 0 8px rgba(#fff, .5));
+            @include box-shadow(inset 0 3px 20px rgba(#000, .6));
+            background: $gray url(/assets/img/wild_oliva.png);
+            color: #fff;
+
+            .primary .arab {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.ayas-wrapper {
+  position: relative;
+  padding-top: 150px;
+
+  .page-header .btn {
+    font-weight: bold;
+  }
+
+  .ayas-container {
+    .bismillah .arab {
+      font-size: 2.5rem;
+    }
+  }
+
+  .ayas {
+    margin-top: 3rem;
+
+    .aya-wrapper {
+      padding: 2rem 0;
+      border-bottom: 1px solid #f6f6f6;
+      line-height: 1.7;
+
+      &:nth-child(even) {
+        background-color: rgba(#fff, .8);
+      }
+
+      .juz {
+        @include text-shadow(0 2px 5px rgba(#000, .5), 0 0 8px rgba(#fff, .5));
+        @include border-radius(8px);
+        @include box-shadow(inset 0 3px 20px rgba(#000, .6));
+        margin: 0 auto 2rem;
+        padding: 3px 8px 4px;
+        width: 120px;
+        background: $gray url(/assets/img/wild_oliva.png);
+        color: #fff;
+        text-align: center;
+      }
+
+      .text {
+        font-size: 2.5rem;
+        line-height: 1.4;
+
+        .number {
+          font-size: 2.25rem;
+          letter-spacing: -4px;
+          @include background-image(linear-gradient(top, $btnInverseBackground, $btnInverseBackgroundHighlight));
+          text-align: center;
+          line-height: 40px;
+          height: 40px;
+          width: 40px;
+          display: inline-block;
+          @include border-radius(40px);
+          @include button-glossy(20px);
+          color: #fff;
+          margin-right: 5px;
+        }
+      }
+
+      .translation {
+        .number {
+          padding: 2px 5px 3px;
+          background-color: rgba(#aaa, .1);
+          @include border-radius(4px);
+          color: $grayLight;
+
+          .number-sura {
+            color: $gray;
+          }
+          .number-aya {
+            color: $gray;
+          }
+        }
+      }
+
+      .alert.sajda {
+        font-size: .8rem;
+        text-align: center;
+        i[class^=icon] {
+          font-size: 1rem;
+          vertical-align: text-bottom;
+          line-height: 1;
+        }
+      }
+    }
+  }
+}

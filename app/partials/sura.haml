@@ -1,0 +1,81 @@
+.ayas-wrapper
+
+  .page-header.fixed#topnav
+    .container
+      .row
+        .span12
+          %h1
+            %a(my-href="/")
+              {{suraInfo.tname}}
+              %small {{suraInfo.ename}}
+              %small.arab {{suraInfo.name}}
+            / %small.info
+            /   {{suraInfo.ayas}} ayas,
+            /   {{suraInfo.type}}
+            /   / {{ayas.collection.length}} loaded
+
+          .links
+            .non-btn-group
+              %span.muted {{suraInfo.type}}
+              %span.muted {{suraInfo.ayas}} ayas
+
+              %a(my-href="{{suraInfo | prevlink}}" ng-show="suraInfo | prevlink") Previous
+              %span.muted(ng-hide="suraInfo | prevlink") Previous
+
+              %a(my-href="{{suraInfo | nextlink}}" ng-show="suraInfo | nextlink") Next
+              %span.muted(ng-hide="suraInfo | nextlink") Next
+
+            .btn-group
+              / %topbtn(ng-click="showSuras()")
+              /   %i.icon-list
+              %abtn(type="primary small" my-href="/")
+                %i.icon-home
+                Home
+
+  .sura-list
+
+  .ayas-container
+    / (ng-hide="suraInfo.id == 1")
+    .bismillah(ng-click="hideSuras()")
+      .container
+        .row
+          .span12
+            %h2.center
+              %img(src="/assets/img/ayas/bismillah-center.png" alt="")
+              / %span.arab بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+
+            %h2.translation.center
+              Bismillahirrahmanirrahim<br>
+              %small In the name of Allah, the Entirely Merciful, the Especially Merciful.
+
+    .ayas
+      .aya-wrapper(ng-repeat="aya in ayas.result" ng-hide="aya.sura_id == 1 && aya.aya == 1")
+        .container
+          .row
+            .span12
+              %h3.juz(ng-show="aya | juz") Juz {{aya | juz}}
+
+              %img(ng-src="{{aya | ayaimg}}" alt="")
+              %p.text.arab
+                / {{aya | ayatext}}
+                / %strong.number {{aya.aya | arab}}
+
+              %p.translation
+                %strong.number <span class="number-sura">{{aya.sura_id}}</span> : <span class="number-aya">{{aya.aya}}</span>
+                {{aya.translation}}
+
+          .row
+            .span12
+              %div(ng-show="sajda(aya) == 1")
+                .alert.alert-info.sajda.recommended
+                  %i.icon-info-sign.icon-large
+                  It is
+                  %strong recommended to sujud (prostrate)
+                  after reading this aya.
+
+              %div(ng-show="sajda(aya) == 2")
+                .alert.alert-error.sajda.obligatory
+                  %i.icon-info-sign.icon-large
+                  It is
+                  %strong obligatory to sujud (prostrate)
+                  after reading this aya.
