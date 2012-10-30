@@ -38,15 +38,14 @@
   .container
     .row
       .span6
-        .sura-count(ng-show="filtered.length < 114")
+        .sura-count(ng-show="filtered().length < 114")
           %i.icon-info-sign
-          %strong {{filtered.length}}
+          %strong {{filtered().length}}
           suras found for "{{search}}".
 
       .span6
         .search
-          / %input.input-mini(type="text" placeholder="Sura ID" ng-model="search.id" ng-maxlength="3")
-          %input(type="text" placeholder="Search sura&hellip;" ng-model="search")>
+          %input(type="text" placeholder="Search sura&hellip;" ng-model="search" ui-reset)>
           %btn.clear-input(btn ng-click="clearSearch()" ng-show="search != ''")
             %i.icon-remove-circle
 
@@ -54,7 +53,7 @@
       .span12
         %nav.suras
           %ul
-            %li(ng-repeat="sura in filtered = (suras.result | filter:suraFilter() | orderBy:sort.attr:sort.desc)")
+            %li(ng-repeat="sura in (filtered() | orderBy:sort.attr:sort.desc)")
               %a(my-href="{{sura | permalink}}")
                 .primary
                   %span.id {{sura.id | pad}}

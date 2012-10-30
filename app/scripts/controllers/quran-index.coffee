@@ -6,8 +6,8 @@ define ['libs/store', 'controllers/controllers', 'services/quran', 'services/qur
   'use strict'
 
   controllers.controller 'quranIndex',
-  ['$scope', '$rootScope', '$routeParams', '$location', 'quran', 'quranIndex'
-  ($scope, $rootScope, $routeParams, $location, quran, quranIndex) ->
+  ['$scope', '$rootScope', '$routeParams', '$filter', 'quran', 'quranIndex'
+  ($scope, $rootScope, $routeParams, $filter, quran, quranIndex) ->
 
     console.group 'quranIndex controller'
 
@@ -56,8 +56,11 @@ define ['libs/store', 'controllers/controllers', 'services/quran', 'services/qur
       else
         $scope.sort.attr == attr
 
-    $scope.suraFilter = ->
-      if $scope.search.length >= 2 then $scope.search else null
+    $scope.filter = ->
+      if $scope.search.length >= 2 then $scope.search else ''
+
+    $scope.filtered = ->
+      $filter('filter')($scope.suras.result, $scope.filter())
 
     $scope.clearSearch = ->
       $scope.search = ''

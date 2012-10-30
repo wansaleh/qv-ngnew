@@ -8,7 +8,7 @@
   define(['libs/store', 'controllers/controllers', 'services/quran', 'services/quran-index'], function(store, controllers) {
     'use strict';
     return controllers.controller('quranIndex', [
-      '$scope', '$rootScope', '$routeParams', '$location', 'quran', 'quranIndex', function($scope, $rootScope, $routeParams, $location, quran, quranIndex) {
+      '$scope', '$rootScope', '$routeParams', '$filter', 'quran', 'quranIndex', function($scope, $rootScope, $routeParams, $filter, quran, quranIndex) {
         var sortToggles, _nextSort;
         console.group('quranIndex controller');
         $(window).off('scroll');
@@ -53,12 +53,15 @@
             return $scope.sort.attr === attr;
           }
         };
-        $scope.suraFilter = function() {
+        $scope.filter = function() {
           if ($scope.search.length >= 2) {
             return $scope.search;
           } else {
-            return null;
+            return '';
           }
+        };
+        $scope.filtered = function() {
+          return $filter('filter')($scope.suras.result, $scope.filter());
         };
         $scope.clearSearch = function() {
           return $scope.search = '';
