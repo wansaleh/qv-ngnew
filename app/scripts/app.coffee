@@ -1,7 +1,14 @@
 ###global define###
 
 define [
+	# essentials
 	'libs/angular'
+	'jquery'
+	'lodash'
+  'underscore.string'
+
+  # others
+  'utils'
 	'libs/angular-resource'
 	'libs/angular-ui'
 	'controllers/controllers'

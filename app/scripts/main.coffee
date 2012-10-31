@@ -29,21 +29,22 @@ require.config
     'underscore.string':
       deps: ['lodash']
 
+    'libs/keymaster':
+      exports: 'key'
+
 require [
   'app'
-  'jquery'
   'bootstrap'
-  'utils'
   'qurandata'
   'controllers/quran-index'
   'controllers/sura'
-  'directives/myHref'
-  'directives/tbbutton'
+  'directives/href'
+  'directives/button'
   'filters/quran'
   'responseInterceptors/dispatcher'
 ],
 
-(app, $) ->
+(app) ->
 
   tpl = (name) -> "/partials/#{name}.html?v=#{(new Date).getTime()}"
 

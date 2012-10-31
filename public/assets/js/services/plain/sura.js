@@ -4,42 +4,16 @@
 
 
 (function() {
-  var __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['libs/angular', 'libs/backbone', 'services/services', 'services/message', 'services/quran', 'libs/angular-resource'], function(angular, Backbone, services) {
+  define(['libs/angular', 'services/services', 'services/message', 'services/quran', 'libs/angular-resource'], function(angular, services) {
     'use strict';
     return services.factory('sura', [
       '$http', '$resource', 'message', 'quran', function($http, $resource, message, quran) {
-        var Ayas, activity, ayas, fetch, reset;
-        Ayas = (function(_super) {
-
-          __extends(Ayas, _super);
-
-          function Ayas() {
-            return Ayas.__super__.constructor.apply(this, arguments);
-          }
-
-          Ayas.prototype.url = '/api/ayas.json';
-
-          Ayas.prototype.comparator = function(aya) {
-            return aya.get('aya');
-          };
-
-          return Ayas;
-
-        })(Backbone.Collection);
+        var activity, ayas, fetch, reset;
         ayas = {
           result: [],
-          ids: [],
-          collection: new Ayas
+          ids: []
         };
-        ayas.collection.on('reset', function(res) {
-          return ayas.result = res.toJSON();
-        });
-        ayas.collection.on('add', function(res) {
-          return ayas.result.push(res.toJSON());
-        });
         activity = $resource('/api/ayas.json');
         fetch = function(suraId, success) {
           var $doc, $win, suraInfo, _lazyloader, _offset, _query;
@@ -53,8 +27,8 @@
           suraInfo = quran.suras.get(suraId);
           _offset = function() {
             var last;
-            if (last = ayas.collection.last()) {
-              return last.get('aya');
+            if (last = _(ayas.result).last()) {
+              return last.aya;
             } else {
               return 0;
             }
@@ -66,7 +40,12 @@
               offset: _offset(),
               limit: 20
             }, function(resource, headers) {
-              ayas.collection.add(resource);
+              resource.forEach(function(res) {
+                if (!_.contains(ayas.ids, res.id)) {
+                  ayas.result.push(res);
+                  return ayas.ids.push(res.id);
+                }
+              });
               $win.on('scroll', _lazyloader);
               return success();
             });
@@ -81,8 +60,7 @@
         };
         reset = function() {
           ayas.result = [];
-          ayas.ids = [];
-          return ayas.collection.reset();
+          return ayas.ids = [];
         };
         return {
           fetch: fetch,

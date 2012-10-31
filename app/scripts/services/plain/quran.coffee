@@ -2,14 +2,13 @@
 
 define [
   'libs/angular'
-  'libs/backbone'
   'services/services'
   'services/message'
   'utils'
   'qurandata'
 ],
 
-(angular, Backbone, services, message) ->
+(angular, services, message) ->
   'use strict'
 
   services.factory 'quran', ['$resource', 'message', ($resource, message) ->
@@ -38,26 +37,26 @@ define [
     for infoName, infoVal of mapping
       oldKey = infoName
       newKey = infoVal.name
-
-      # quran[newKey] = []
-      quran[newKey] = new Backbone.Collection
+      quran[newKey] = []
       i = 0
+
       for val in QuranData[oldKey]
         data = id: (i++) + 1
         data[key] = val[j] for key, j in infoVal.keys
+
+        data.get = (attr) ->
+          return false if _.isUndefined this[attr]
+          this[attr]
+
         quran[newKey].push data
 
-    # quran.suras_col = new Backbone.Collection quran.suras,
-    #   url: '/api/suras.json'
-    #   comparator: (sura) -> sura.get 'id'
+      # get helper
+      quran[newKey].get = (id) ->
+        id = _.to_i id
+        return false if not valid id
+        _.find this, (sura) -> sura.id == id
 
-    # # get helper for suras
-    # quran.suras.get = (id) ->
-    #   id = _.to_i id
-    #   return false if not valid id
-    #   _.find this, (sura) -> sura.id == id
-
+    # Expose for convenience
     window.quran = quran
-
-    quran
+    window.quran
   ]

@@ -30,11 +30,14 @@
       },
       'underscore.string': {
         deps: ['lodash']
+      },
+      'libs/keymaster': {
+        exports: 'key'
       }
     }
   });
 
-  require(['app', 'jquery', 'bootstrap', 'utils', 'qurandata', 'controllers/quran-index', 'controllers/sura', 'directives/myHref', 'directives/tbbutton', 'filters/quran', 'responseInterceptors/dispatcher'], function(app, $) {
+  require(['app', 'bootstrap', 'qurandata', 'controllers/quran-index', 'controllers/sura', 'directives/href', 'directives/button', 'filters/quran', 'responseInterceptors/dispatcher'], function(app) {
     var html5, tpl;
     tpl = function(name) {
       return "/partials/" + name + ".html?v=" + ((new Date).getTime());

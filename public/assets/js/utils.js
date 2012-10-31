@@ -1,10 +1,16 @@
 (function() {
 
   define(['jquery', 'lodash', 'underscore.string'], function($, _, _str) {
-    var arabicNums;
+    var arabicNums, utils;
     arabicNums = ["\u0660", "\u0661", "\u0662", "\u0663", "\u0664", "\u0665", "\u0666", "\u0667", "\u0668", "\u0669"];
-    _.mixin(_str);
-    _.mixin({
+    utils = {
+      sample: function(array) {
+        if (_.isArray(array)) {
+          return _.first(_.shuffle(array));
+        } else {
+          return array;
+        }
+      },
       to_i: function(obj, base) {
         var number;
         if (_.isString(obj)) {
@@ -16,13 +22,6 @@
       },
       to_s: function(obj) {
         return (new String(obj)).toString();
-      },
-      sample: function(array) {
-        if (_.isArray(array)) {
-          return _.first(_.shuffle(array));
-        } else {
-          return array;
-        }
       },
       arab: function(number) {
         return _.to_s(number).replace(/[0-9]/g, function(w) {
@@ -37,7 +36,9 @@
         ord = n < 21 ? (n < 4 ? suffix[n] : suffix[0]) : (n % 10 > 4 ? suffix[0] : suffix[n % 10]);
         return number + ord;
       }
-    });
+    };
+    _.mixin(_str);
+    _.mixin(utils);
     _.each = (function() {
       var each;
       each = _.each;
@@ -68,7 +69,7 @@
     this.log = function() {
       return console.log.apply(console, arguments);
     };
-    return (function() {
+    (function() {
       var methods;
       methods = ['each', 'map', 'reduce', 'reduceRight', 'detect', 'select', 'reject', 'all', 'any', 'include', 'invoke', 'pluck', 'max', 'min', 'sortBy', 'sortedIndex', 'toArray', 'size', 'first', 'rest', 'last', 'without', 'indexOf', 'lastIndexOf', 'isEmpty', 'where'];
       methods = methods.concat('sample');
@@ -78,6 +79,7 @@
         };
       });
     })();
+    return utils;
   });
 
 }).call(this);

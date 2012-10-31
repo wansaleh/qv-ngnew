@@ -5,7 +5,7 @@
 
 (function() {
 
-  define(['libs/store', 'controllers/controllers', 'services/quran', 'services/quran-index'], function(store, controllers) {
+  define(['libs/store', 'libs/keymaster', 'controllers/controllers', 'services/quran', 'services/quran-index'], function(store, key, controllers) {
     'use strict';
     return controllers.controller('quranIndex', [
       '$scope', '$rootScope', '$routeParams', '$filter', 'quran', 'quranIndex', function($scope, $rootScope, $routeParams, $filter, quran, quranIndex) {

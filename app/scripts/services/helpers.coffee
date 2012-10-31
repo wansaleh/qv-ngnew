@@ -23,7 +23,6 @@ define [
       return false unless suraValid id
       "/sura/#{id}"
 
-    suraValid: suraValid
+    suraValid:     suraValid
     suraPermalink: suraPermalink
-
   ]

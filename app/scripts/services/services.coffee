@@ -1,6 +1,6 @@
 ###global define###
 
 define ['libs/angular'], (angular) ->
-	'use strict'
+  'use strict'
 
-	angular.module 'services', []
+  angular.module 'services', []

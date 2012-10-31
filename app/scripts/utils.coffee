@@ -9,11 +9,11 @@ define [
   # Arabic numbers, 1-9
   arabicNums = ["\u0660", "\u0661", "\u0662", "\u0663", "\u0664", "\u0665", "\u0666", "\u0667", "\u0668", "\u0669"]
 
-  # Extend with underscore.string.
-  _.mixin _str
+  utils =
+    # ruby's Array.sample :P
+    sample: (array) ->
+      if _.isArray array then _.first(_.shuffle(array)) else array
 
-  # Extend underscore.
-  _.mixin
     # force obj to integer
     to_i: (obj, base) ->
       if _.isString obj
@@ -25,14 +25,6 @@ define [
     # force obj to string
     to_s: (obj) ->
       (new String obj).toString()
-
-    # # ruby's %w :P
-    # w: (string) ->
-    #   _.trim(string).replace(/\s+/g, ' ').split(' ')
-
-    # ruby's Array.sample :P
-    sample: (array) ->
-      if _.isArray array then _.first(_.shuffle(array)) else array
 
     # translate number to arabic.
     arab: (number) ->
@@ -46,6 +38,12 @@ define [
       ord = if n < 21 then (if n < 4 then suffix[n] else suffix[0]) else (if n % 10 > 4 then suffix[0] else suffix[n % 10])
       number + ord
 
+  # Extend with underscore.string.
+  _.mixin _str
+
+  # Extend underscore.
+  _.mixin utils
+
   # patch _.each, to include _.words
   _.each = do ->
     each = _.each
@@ -54,9 +52,6 @@ define [
       obj = args.shift()
       obj = _.words obj if _.isString obj
       each.apply _, [obj].concat(args)
-
-  # # add getter in native Arrays, provided it's an array of hashes
-  # Array::get = (attr) ->
 
   # jQuery small plugins
   $.fn.scrollTo = (options = {}) ->
@@ -86,3 +81,5 @@ define [
     _.each methods, (method) ->
       Array::[method] = ->
         _[method].apply(_, [this].concat(_.toArray(arguments)))
+
+  utils

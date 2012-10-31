@@ -5,7 +5,7 @@
 
 (function() {
 
-  define(['libs/angular', 'libs/backbone', 'services/services', 'services/message', 'utils', 'qurandata'], function(angular, Backbone, services, message) {
+  define(['libs/angular', 'services/services', 'services/message', 'utils', 'qurandata'], function(angular, services, message) {
     'use strict';
     return services.factory('quran', [
       '$resource', 'message', function($resource, message) {
@@ -54,7 +54,7 @@
           infoVal = mapping[infoName];
           oldKey = infoName;
           newKey = infoVal.name;
-          quran[newKey] = new Backbone.Collection;
+          quran[newKey] = [];
           i = 0;
           _ref = QuranData[oldKey];
           for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -67,11 +67,26 @@
               key = _ref1[j];
               data[key] = val[j];
             }
+            data.get = function(attr) {
+              if (_.isUndefined(this[attr])) {
+                return false;
+              }
+              return this[attr];
+            };
             quran[newKey].push(data);
           }
+          quran[newKey].get = function(id) {
+            id = _.to_i(id);
+            if (!valid(id)) {
+              return false;
+            }
+            return _.find(this, function(sura) {
+              return sura.id === id;
+            });
+          };
         }
         window.quran = quran;
-        return quran;
+        return window.quran;
       }
     ]);
   });

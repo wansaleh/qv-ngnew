@@ -5,14 +5,11 @@
 
 (function() {
 
-  define(['libs/angular', 'services/services', 'services/message', 'utils', 'qurandata'], function(angular, services, message) {
+  define(['libs/angular', 'libs/backbone', 'services/services', 'services/message', 'utils', 'qurandata'], function(angular, Backbone, services) {
     'use strict';
     return services.factory('quran', [
       '$resource', 'message', function($resource, message) {
-        var data, i, infoName, infoVal, j, key, mapping, newKey, oldKey, quran, val, valid, _i, _j, _len, _len1, _ref, _ref1;
-        valid = function(id) {
-          return (1 <= id && id <= 114);
-        };
+        var data, i, infoName, infoVal, j, key, mapping, newKey, oldKey, quran, val, _i, _j, _len, _len1, _ref, _ref1;
         quran = {
           markings: {
             Pause: ["\u06D6", "\u06D7", "\u06D8", "\u06D9", "\u06DA", "\u06DB"],
@@ -54,7 +51,7 @@
           infoVal = mapping[infoName];
           oldKey = infoName;
           newKey = infoVal.name;
-          quran[newKey] = [];
+          quran[newKey] = new Backbone.Collection;
           i = 0;
           _ref = QuranData[oldKey];
           for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -67,26 +64,11 @@
               key = _ref1[j];
               data[key] = val[j];
             }
-            data.get = function(attr) {
-              if (_.isUndefined(this[attr])) {
-                return false;
-              }
-              return this[attr];
-            };
             quran[newKey].push(data);
           }
-          quran[newKey].get = function(id) {
-            id = _.to_i(id);
-            if (!valid(id)) {
-              return false;
-            }
-            return _.find(this, function(sura) {
-              return sura.id === id;
-            });
-          };
         }
         window.quran = quran;
-        return quran;
+        return window.quran;
       }
     ]);
   });

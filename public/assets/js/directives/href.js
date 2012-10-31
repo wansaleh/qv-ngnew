@@ -5,17 +5,17 @@
 
 (function() {
 
-  define(['directives/directives'], function(directives) {
+  define(['lodash', 'utils', 'directives/directives'], function(_, utils, directives) {
     'use strict';
 
     var msie;
-    msie = parseInt((/msie (\d+)/.exec(navigator.userAgent.toLowerCase()) || [])[1], 10);
-    return directives.directive('myHref', [
+    msie = _.to_i((/msie (\d+)/.exec(navigator.userAgent.toLowerCase()) || [])[1]);
+    return directives.directive('qvHref', [
       'html5', function(html5) {
         return {
           priority: 99,
           link: function(scope, element, attr) {
-            return attr.$observe('myHref', function(value) {
+            return attr.$observe('qvHref', function(value) {
               if (!value) {
                 return;
               }

@@ -5,7 +5,7 @@
       .row
         .span12
           %h1
-            %a(my-href="/")
+            %a(qv-href="/")
               {{suraInfo.tname}}
               %small {{suraInfo.ename}}
               %small.arab {{suraInfo.name}}
@@ -19,16 +19,16 @@
               %span.muted {{suraInfo.type}}
               %span.muted {{suraInfo.ayas}} ayas
 
-              %a(my-href="{{suraInfo | prevlink}}" ng-show="suraInfo | prevlink") Previous
+              %a(qv-href="{{suraInfo | prevlink}}" ng-show="suraInfo | prevlink") Previous
               %span.muted(ng-hide="suraInfo | prevlink") Previous
 
-              %a(my-href="{{suraInfo | nextlink}}" ng-show="suraInfo | nextlink") Next
+              %a(qv-href="{{suraInfo | nextlink}}" ng-show="suraInfo | nextlink") Next
               %span.muted(ng-hide="suraInfo | nextlink") Next
 
             .btn-group
               / %topbtn(ng-click="showSuras()")
               /   %i.icon-list
-              %abtn(type="primary small" my-href="/")
+              %abtn(type="primary small" qv-href="/")
                 %i.icon-home
                 Home
 
@@ -53,27 +53,32 @@
         .container
           .row
             .span12
-              %h3.juz(ng-show="aya | juz") Juz {{aya | juz}}
+              .info
+                %h4.juz(ng-show="aya.juz") Juz &sdot; <b>{{aya.juz}}</b>
+                %h5.hizb(ng-show="aya.hizb") Hizb Quarter &sdot; <b>{{aya.hizb}}</b>
+                %h5.ruku(ng-show="aya.ruku") Ruku' &sdot; <b>{{aya.ruku}}</b>
+                %h5.manzil(ng-show="aya.manzil") Manzil &sdot; <b>{{aya.manzil}}</b>
 
               %img(ng-src="{{aya | ayaimg}}" alt="")
-              %p.text.arab
-                / {{aya | ayatext}}
-                / %strong.number {{aya.aya | arab}}
+              / %p.text.arab
+              /   / {{aya | ayatext}}
+              /   / %strong.number {{aya.aya | arab}}
 
               %p.translation
                 %strong.number <span class="number-sura">{{aya.sura_id}}</span> : <span class="number-aya">{{aya.aya}}</span>
                 {{aya.translation}}
 
           .row
-            .span12
-              %div(ng-show="sajda(aya) == 1")
+            .span12(ng-switch="aya.sajda")
+
+              %div(ng-switch-when="1")
                 .alert.alert-info.sajda.recommended
                   %i.icon-info-sign.icon-large
                   It is
                   %strong recommended to sujud (prostrate)
                   after reading this aya.
 
-              %div(ng-show="sajda(aya) == 2")
+              %div(ng-switch-when="2")
                 .alert.alert-error.sajda.obligatory
                   %i.icon-info-sign.icon-large
                   It is

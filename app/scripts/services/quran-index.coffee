@@ -2,6 +2,7 @@
 
 define [
   'libs/angular'
+  'libs/backbone'
   'libs/store'
   'services/services'
   'services/message'
@@ -9,28 +10,38 @@ define [
   'libs/angular-resource'
 ],
 
-(angular, store, services) ->
+(angular, Backbone, store, services) ->
   'use strict'
 
   services.factory 'quranIndex',
   ['$resource', 'message', 'quran',
   ($resource, message, quran) ->
 
+    class Suras extends Backbone.Collection
+      url: '/api/suras.js'
+      comparator: (sura) -> sura.get 'id'
+
     suras =
       result: []
+      collection: new Suras
+
+    suras.collection.on 'reset', (res) ->
+      suras.result = res.toJSON()
 
     activity = $resource '/api/suras.json'
 
     fetch = (success = angular.noop) ->
       if _.isUndefined(suras_store = store.get('suras.result'))
-        suras.result = activity.query (resource, headers) ->
+        activity.query (resource, headers) ->
+          suras.collection.reset(resource)
           store.set('suras.result', resource)
           success()
       else
-        suras.result = suras_store
+        suras.collection.reset(suras_store)
 
     reset = ->
       suras.result = []
+      suras.collection.reset()
 
     fetch: fetch
     reset: reset

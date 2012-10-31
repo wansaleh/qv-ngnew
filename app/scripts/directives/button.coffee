@@ -26,18 +26,3 @@ define ['directives/directives'],
 		replace: true
 		link: linker
 	]
-
-	# directives.directive 'btn', [->
-	# 	restrict: 'E'
-	# 	compile: (element, attrs) ->
-	# 		buttonType = if attrs.btn? then 'button' else 'link'
-	# 		switch buttonType
-	# 			when 'button' then button = $("<button class='btn'>#{element.html()}</button>")
-	# 			when 'link'   then button = $("<a class='btn'>#{element.html()}</a>")
-
-	# 		element.replaceWith(button)
-
-	# 		if attrs.type?
-	# 			attrs.type.trim().split(/\s+/).forEach (cls) ->
-	# 				button.addClass("btn-#{cls}")
-	# ]
