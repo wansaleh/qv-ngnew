@@ -1,11 +1,10 @@
-# The default, if you just run `rake` in this directory, will list all the available tasks
 task :default do
   puts "Run server/guard"
   run_task "server"
 end
 
 desc "Start everything"
-task :all do
+task :watch do
   rm_rf './public/assets/js'
   rm_rf './public/assets/css'
   system "rsync -ar --exclude '.git' --exclude '.DS_Store' --exclude '*.coffee' app/scripts/ public/assets/js/"
@@ -20,7 +19,7 @@ task :server do
   commander 'puma', 'guard'
 end
 
-task :a => :all
+task :w => :watch
 task :s => :server
 
 # run command(s) and capture SIGINT
