@@ -11,6 +11,9 @@
       '$scope', '$rootScope', '$routeParams', '$filter', 'quran', 'quranIndex', function($scope, $rootScope, $routeParams, $filter, quran, quranIndex) {
         var sortToggles, _nextSort;
         console.group('quranIndex controller');
+        $('body').stop().scrollTo({
+          duration: 0
+        });
         $(window).off('scroll');
         $rootScope.pageTitle = "Index";
         $scope.suras = quranIndex.suras;

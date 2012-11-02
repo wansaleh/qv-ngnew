@@ -1,7 +1,11 @@
 ###global define###
 
-define ['require', 'libs/angular', 'app'], (require, angular) ->
-	'use strict'
+define ['jquery', 'require', 'libs/angular', 'app'], ($, require, angular) ->
+  'use strict'
 
-	require ['libs/domReady!'], (document) ->
-		angular.bootstrap document, ['app']
+  $ ->
+    angular.bootstrap document, ['app']
+
+    $('.page-header').live 'click', ->
+      if $(window).scrollTop() > 100
+        $('body').stop().scrollTo()

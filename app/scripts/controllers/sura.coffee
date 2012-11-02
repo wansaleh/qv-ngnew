@@ -14,6 +14,11 @@ define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/
 
     console.group 'sura controller: sura:', $routeParams.suraId
 
+    $('body').stop().scrollTo(duration: 0)
+
+    # remove any scroll event
+    $(window).off 'scroll'
+
     $scope.suraInfo = quran.suras.get($routeParams.suraId)
 
     $scope.suraInfo = $scope.suraInfo.toJSON() if $scope.suraInfo.toJSON?

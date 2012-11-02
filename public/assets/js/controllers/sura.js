@@ -17,6 +17,10 @@
     return controllers.controller('sura', [
       '$scope', '$rootScope', '$routeParams', 'quran', 'sura', function($scope, $rootScope, $routeParams, quran, sura) {
         console.group('sura controller: sura:', $routeParams.suraId);
+        $('body').stop().scrollTo({
+          duration: 0
+        });
+        $(window).off('scroll');
         $scope.suraInfo = quran.suras.get($routeParams.suraId);
         if ($scope.suraInfo.toJSON != null) {
           $scope.suraInfo = $scope.suraInfo.toJSON();

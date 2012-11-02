@@ -11,6 +11,8 @@ define ['libs/store', 'controllers/controllers', 'services/quran', 'services/qur
 
     console.group 'quranIndex controller'
 
+    $('body').stop().scrollTo(duration: 0)
+
     # remove any scroll event
     $(window).off 'scroll'
 
