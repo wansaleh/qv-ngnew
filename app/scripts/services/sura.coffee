@@ -24,6 +24,7 @@ define [
     ayas =
       result: []
       collection: new Ayas
+      loaded: 0
 
     ayas.collection.on 'reset', (res) ->
       ayas.result = res.toJSON()
@@ -80,7 +81,11 @@ define [
           offset: _offset()
           limit: 20
         , (resource, headers) ->
+          # append in collection
           ayas.collection.add(ayaInfo resource)
+
+          # set loaded counter
+          ayas.loaded = ayas.collection.length
 
           # attach scroll event
           $win.on 'scroll', _lazyloader

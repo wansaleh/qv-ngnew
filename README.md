@@ -2,6 +2,8 @@
 
 qv-ngnew: QuranVue, with AngularJS. Using Cary Landholt's [AngularFun](https://github.com/CaryLandholt/AngularFun) base project.
 
+This project also uses Backbone to manage collections.
+
 Run:
 
 - `rake` for watchers

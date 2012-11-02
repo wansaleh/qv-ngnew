@@ -31,7 +31,8 @@
         })(Backbone.Collection);
         ayas = {
           result: [],
-          collection: new Ayas
+          collection: new Ayas,
+          loaded: 0
         };
         ayas.collection.on('reset', function(res) {
           return ayas.result = res.toJSON();
@@ -141,6 +142,7 @@
               limit: 20
             }, function(resource, headers) {
               ayas.collection.add(ayaInfo(resource));
+              ayas.loaded = ayas.collection.length;
               $win.on('scroll', _lazyloader);
               return success();
             });

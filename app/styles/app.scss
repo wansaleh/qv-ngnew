@@ -21,7 +21,7 @@ body {
   position: relative;
   height: 100%;
   background: #fff url(/assets/img/textures/groovepaper.png);
-  font-weight: 300;
+  font-weight: 100;
   font-size: 1rem;
   @include text-shadow(1px 1px 0 rgba(#fff, 1));
 }
@@ -98,16 +98,21 @@ body {
   h1 {
     float: left;
     margin: 0;
-    font-size: 2rem;
+    font-size: 1.8rem;
 
     a {
       display: inline-block;
       color: $textColor;
       text-decoration: none;
+      @include transition(all .3s);
+
+      &:hover {
+        opacity: .7;
+      }
     }
     small {
       display: inline-block;
-      margin-left: 10px;
+      margin-left: 5px;
       font-size: .7em;
     }
     small.arab {
@@ -144,7 +149,6 @@ body {
         padding: 2px 8px 1px;
         border-bottom: 3px solid transparent;
         color: $textColor;
-        font-weight: bold;
         text-decoration: none;
         @include border-radius(3px 3px 0 0);
 
@@ -168,21 +172,24 @@ body {
 
 .index-wrapper {
   position: relative;
-  padding-top: 92px;
+  padding-top: 100px;
 
   .search-bar {
-    margin-bottom: 4px;
+    margin-bottom: 15px;
 
     .sura-count {
-      @include text-shadow(0 2px 5px rgba(#000, .5), 0 0 8px rgba(#fff, .5));
-      @include box-shadow(inset 0 2px 10px rgba(#000, .2));
+      display: inline-block;
+      float: left;
+      @include transition(all .5s ease);
       margin: 0 2px;
-      padding: 5px 10px;
+      padding: 4px 8px;
       height: $baseLineHeight;
-      background: $gray url(/assets/img/textures/wild_oliva.png);
-      color: #fff;
       line-height: $baseLineHeight;
-      @include border-radius(4px);
+      opacity: 0;
+      font-size: .8rem;
+      &.show {
+        opacity: 1;
+      }
     }
 
     .search {
@@ -206,16 +213,19 @@ body {
           border-color: lighten($linkColor, 30%);
         }
       }
+
       button.clear-input {
         @include box-shadow(none);
         position: absolute;
-        top: 5px;
-        right: 5px;
+        top: 6px;
+        right: 8px;
         z-index: 2;
         padding: 0 3px;
         border: none;
         background: none;
         opacity: .5;
+        font-size: 1.1rem;
+        @include transition(all .3s ease);
         &:hover {
           opacity: 1;
         }
@@ -297,7 +307,7 @@ body {
 
 .overlay {
   position: absolute;
-  display: none;
+  // display: none;
   top: 0;
   left: 0;
   width: 100%;
@@ -306,9 +316,9 @@ body {
   opacity: 0.6;
   z-index: 10;
 
-  &.show {
-    display: block;
-  }
+  // &.show {
+  //   display: block;
+  // }
 }
 
 .ayas-wrapper {
@@ -321,8 +331,19 @@ body {
   }
 
   .ayas-container {
-    .bismillah .arab {
-      font-size: 2.5rem;
+    .bismillah {
+      h2 {
+        text-align: center;
+        font-size: 2rem;
+        span, small {
+          display: block;
+        }
+        small {
+          margin-top: 5px;
+          font-size: 1.3rem;
+          font-style: italic;
+        }
+      }
     }
   }
 
@@ -330,7 +351,7 @@ body {
     margin-top: 3rem;
 
     .aya-wrapper {
-      padding: 2rem 0 2.5rem;
+      padding: 3rem 0;
       border-bottom: 1px solid #f6f6f6;
       line-height: 1.7;
 

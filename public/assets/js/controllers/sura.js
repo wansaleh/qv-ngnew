@@ -24,9 +24,9 @@
         $rootScope.pageTitle = $scope.suraInfo.tname;
         $scope.ayas = sura.ayas;
         sura.reset();
-        $('.overlay').addClass('show');
+        $scope.overlay = true;
         sura.fetch($routeParams.suraId, function() {
-          return $('.overlay').removeClass('show');
+          return $scope.overlay = false;
         });
         return console.groupEnd();
       }

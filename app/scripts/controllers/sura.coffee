@@ -23,10 +23,9 @@ define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/
 
     sura.reset()
 
-    $('.overlay').addClass('show')
-
+    $scope.overlay = true
     sura.fetch $routeParams.suraId, ->
-      $('.overlay').removeClass('show')
+      $scope.overlay = false
 
     # $scope.showSuras = ->
     #   $('#topnav').addClass('slideup')

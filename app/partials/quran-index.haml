@@ -37,15 +37,14 @@
 
   .container
     .row.search-bar
-      .span6
-        .sura-count(ng-show="filtered().length < 114")
+      .span12
+        .sura-count.alert.alert-success(ng-class="{show: filtered().length < 114}")
           %i.icon-info-sign
           %strong {{filtered().length}}
           suras found for "{{search}}".
 
-      .span6
         .search
-          %input(type="text" placeholder="Search sura&hellip;" ng-model="search" ui-reset)>
+          %input.search-query(type="text" placeholder="Search sura&hellip;" ng-model="search")>
           %btn.clear-input(btn ng-click="clearSearch()" ng-show="search != ''")
             %i.icon-remove-circle
 

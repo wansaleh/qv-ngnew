@@ -1,4 +1,4 @@
-.overlay
+.overlay(ng-show="overlay")
 
 .ayas-wrapper
 
@@ -19,7 +19,7 @@
           .links
             .non-btn-group
               %span.muted {{suraInfo.type}}
-              %span.muted {{suraInfo.ayas}} ayas ({{ayas.collection.length}} loaded)
+              %span.muted {{suraInfo.ayas}} ayas ({{ayas.loaded}} loaded)
 
               %a(qv-href="{{suraInfo.prev_link}}" ng-show="suraInfo.prev_link" qv-title="{{suraInfo.prev_title}}" ui-jq="tooltip") Previous
               %span.muted(ng-hide="suraInfo.prev_link") Previous
@@ -37,17 +37,16 @@
   .sura-list
 
   .ayas-container
-    / (ng-hide="suraInfo.id == 1")
     .bismillah(ng-click="hideSuras()")
       .container
         .row
           .span12
-            %h2.center
+            %h2
               %img(src="/assets/img/ayas/bismillah-center.png" alt="")
               / %span.arab بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
 
-            %h2.translation.center
-              Bismillahirrahmanirrahim<br>
+            %h2.translation
+              %span Bismillahirrahmanirrahim
               %small In the name of Allah, the Entirely Merciful, the Especially Merciful.
 
     .ayas
@@ -55,7 +54,7 @@
         .container
           .row
             .span12
-              .info
+              .info(ui-if="aya.juz || aya.hizb || aya.ruku || aya.manzil")
                 %h4.juz(ng-show="aya.juz") Juz &sdot; <b>{{aya.juz}}</b>
                 %h5.hizb(ng-show="aya.hizb") Hizb Quarter &sdot; <b>{{aya.hizb}}</b>
                 %h5.ruku(ng-show="aya.ruku") Ruku' &sdot; <b>{{aya.ruku}}</b>
@@ -76,13 +75,13 @@
               %div(ng-switch-when="1")
                 .alert.alert-info.sajda.recommended
                   %i.icon-info-sign.icon-large
-                  It is
+                  &nbsp;It is
                   %strong recommended to sujud (prostrate)
                   after reading this aya.
 
               %div(ng-switch-when="2")
                 .alert.alert-error.sajda.obligatory
                   %i.icon-info-sign.icon-large
-                  It is
+                  &nbsp;It is
                   %strong obligatory to sujud (prostrate)
                   after reading this aya.
