@@ -11,26 +11,34 @@ define ['libs/store', 'controllers/controllers', 'services/quran', 'services/qur
 
     console.group 'quranIndex controller'
 
+    # back to top
     $('body').stop().scrollTo(duration: 0)
 
     # remove any scroll event
     $(window).off 'scroll'
 
-    # $scope.suras = result: []
-    # $scope.suras.result = quran.suras
+    # ========================================================================
+    # models
 
+    # set title
     $rootScope.pageTitle = "Index"
 
+    # fetch from db/localStorage
     $scope.suras = quranIndex.suras
     quranIndex.fetch()
 
+    # sort attrs
     $scope.sort =
       attr: 'id'
       desc: false
 
+    # search string
     $scope.search = ''
 
     sortToggles = ['id', 'tname', 'order', 'ayas:desc']
+
+    # ========================================================================
+    # functions
 
     _nextSort = (attr) ->
       next = _.indexOf(sortToggles, attr) + 1

@@ -13,6 +13,14 @@
         }
         return "/sura/" + id;
       },
+      ayaText: function(aya) {
+        var text;
+        text = aya.sura_id !== 1 && aya.aya === 1 ? aya.text.slice(39) : aya.text;
+        return text.replace(/[\s\n]+/g, ' ');
+      },
+      ayaImg: function(aya) {
+        return "/assets/img/ayas/" + aya.sura_id + "_" + aya.aya + ".png";
+      },
       arab: function(number) {
         return _.to_s(number).replace(/[0-9]/g, function(w) {
           return arabicNums[+w];
@@ -27,7 +35,6 @@
         return number + ord;
       }
     };
-    _.mixin(utils);
     return utils;
   });
 

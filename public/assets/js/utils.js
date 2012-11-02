@@ -47,10 +47,12 @@
         callback: $.noop,
         offset: 0
       });
-      $('body').animate({
-        scrollTop: $(this).offset().top + options.offset
-      }, options.duration, options.callback.bind(this));
-      return this;
+      return $(this).each(function() {
+        $('body').animate({
+          scrollTop: $(this).offset().top + options.offset
+        }, options.duration, options.callback.bind(this));
+        return this;
+      });
     };
     this.log = function() {
       return console.log.apply(console, arguments);

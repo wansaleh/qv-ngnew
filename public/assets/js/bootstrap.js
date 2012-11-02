@@ -5,15 +5,10 @@
 
 (function() {
 
-  define(['jquery', 'require', 'libs/angular', 'app'], function($, require, angular) {
+  define(['require', 'libs/angular', 'app'], function(require, angular) {
     'use strict';
-    return $(function() {
-      angular.bootstrap(document, ['app']);
-      return $('.page-header').live('click', function() {
-        if ($(window).scrollTop() > 100) {
-          return $('body').stop().scrollTo();
-        }
-      });
+    return require(['libs/domReady!'], function(document) {
+      return angular.bootstrap(document, ['app']);
     });
   });
 

@@ -13,6 +13,15 @@ define ['lodash', 'utils'],
       return false unless @suraValid id
       "/sura/#{id}"
 
+    # aya text
+    ayaText: (aya) ->
+      text = if aya.sura_id != 1 and aya.aya == 1 then aya.text.slice(39) else aya.text
+      text.replace /[\s\n]+/g, ' '
+
+    # aya image
+    ayaImg: (aya) ->
+      "/assets/img/ayas/#{aya.sura_id}_#{aya.aya}.png"
+
     # translate number to arabic.
     arab: (number) ->
       _.to_s(number).replace /[0-9]/g, (w) -> arabicNums[+w]
@@ -24,7 +33,5 @@ define ['lodash', 'utils'],
       suffix = _.words 'th st nd rd th'
       ord = if n < 21 then (if n < 4 then suffix[n] else suffix[0]) else (if n % 10 > 4 then suffix[0] else suffix[n % 10])
       number + ord
-
-  _.mixin utils
 
   utils

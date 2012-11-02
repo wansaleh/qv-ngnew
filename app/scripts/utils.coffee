@@ -36,11 +36,12 @@ define ['jquery', 'lodash', 'underscore.string'],
   # jQuery small plugins
   $.fn.scrollTo = (options = {}) ->
     options = _.defaults options, { duration: 1000, callback: $.noop, offset: 0 }
-    $('body').animate
-      scrollTop: $(this).offset().top + options.offset,
-      options.duration,
-      options.callback.bind this
-    this
+    $(this).each ->
+      $('body').animate
+        scrollTop: $(this).offset().top + options.offset,
+        options.duration,
+        options.callback.bind this
+      this
 
   # Shortcut for console.log
   @log = ->

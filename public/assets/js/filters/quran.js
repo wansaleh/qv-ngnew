@@ -5,7 +5,7 @@
 
 (function() {
 
-  define(['filters/filters', 'services/quran', 'quranutils'], function(filters) {
+  define(['filters/filters', 'quranutils', 'utils', 'lodash'], function(filters, qu, utils, _) {
     'use strict';
     filters.filter('l', [
       'html5', function(html5) {
@@ -25,55 +25,37 @@
     });
     filters.filter('suraValid', function() {
       return function(suraId) {
-        return _.suraValid(suraId);
+        return qu.suraValid(suraId);
       };
     });
     filters.filter('permalink', function() {
       return function(sura) {
-        return _.suraPermalink(sura.id);
+        return qu.suraPermalink(sura.id);
       };
     });
     filters.filter('nextlink', function() {
       return function(sura) {
-        return _.suraPermalink(sura.id + 1);
+        return qu.suraPermalink(sura.id + 1);
       };
     });
     filters.filter('prevlink', function() {
       return function(sura) {
-        return _.suraPermalink(sura.id - 1);
+        return qu.suraPermalink(sura.id - 1);
       };
     });
     filters.filter('ayatext', function() {
       return function(aya) {
-        if (aya.sura_id !== 1 && aya.aya === 1) {
-          return aya.text.slice(39);
-        } else {
-          return aya.text;
-        }
+        return qu.ayaText(aya);
       };
     });
     filters.filter('ayaimg', function() {
       return function(aya) {
-        return "/assets/img/ayas/" + aya.sura_id + "_" + aya.aya + ".png";
-      };
-    });
-    filters.filter('juz', function() {
-      return function(aya) {
-        var juz;
-        juz = _.first(quran.juzs.where({
-          sura: aya.sura_id,
-          aya: aya.aya
-        }));
-        if (juz != null) {
-          return juz.get('id');
-        } else {
-          return false;
-        }
+        return qu.ayaImg(aya);
       };
     });
     filters.filter('arab', function() {
       return function(num) {
-        return _.arab(num);
+        return qu.arab(num);
       };
     });
     filters.filter('pad', function() {
@@ -89,7 +71,7 @@
     });
     filters.filter('ordinal', function() {
       return function(num) {
-        return _.ordinal(num);
+        return qu.ordinal(num);
       };
     });
     return filters.filter('truncate', function() {

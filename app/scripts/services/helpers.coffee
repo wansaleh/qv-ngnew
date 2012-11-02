@@ -4,7 +4,6 @@ define [
   'libs/angular'
   'services/services'
   'services/message'
-  'services/quran'
   'libs/angular-resource'
 ],
 
@@ -12,8 +11,8 @@ define [
   'use strict'
 
   services.factory 'helpers',
-  ['$resource', 'message', 'quran'
-  ($resource, message, quran) ->
+  ['$resource', 'message'
+  ($resource, message) ->
 
     # Check validity of sura id
     suraValid = (id) -> 1 <= id <= 114

@@ -1,8 +1,8 @@
-.overlay(ng-show="overlay")
+/ .overlay(ng-show="overlay")
 
 .ayas-wrapper
 
-  .page-header.fixed#topnav
+  .page-header.fixed(ng-click="top()")
     .container
       .row
         .span12
@@ -21,10 +21,10 @@
               %span.muted {{suraInfo.type}}
               %span.muted {{suraInfo.ayas}} ayas ({{ayas.loaded}} loaded)
 
-              %a(qv-href="{{suraInfo.prev_link}}" ng-show="suraInfo.prev_link" qv-title="{{suraInfo.prev_title}}" ui-jq="tooltip") Previous
+              %a(qv-href="{{suraInfo.prev_link}}" ng-show="suraInfo.prev_link" qv-title="{{suraInfo.prev_title}}") Previous
               %span.muted(ng-hide="suraInfo.prev_link") Previous
 
-              %a(qv-href="{{suraInfo.next_link}}" ng-show="suraInfo.next_link" qv-title="{{suraInfo.next_title}}" ui-jq="tooltip") Next
+              %a(qv-href="{{suraInfo.next_link}}" ng-show="suraInfo.next_link" qv-title="{{suraInfo.next_title}}") Next
               %span.muted(ng-hide="suraInfo.next_link") Next
 
             .btn-group
@@ -50,7 +50,7 @@
               %small In the name of Allah, the Entirely Merciful, the Especially Merciful.
 
     .ayas
-      .aya-wrapper(ng-repeat="aya in ayas.result" ng-hide="aya.sura_id == 1 && aya.aya == 1")
+      .aya-wrapper(ng-repeat="aya in ayas.result" ng-hide="aya.sura_id == 1 && aya.aya == 1" id="aya-{{aya.aya}}")
         .container
           .row
             .span12
@@ -60,13 +60,17 @@
                 %h5.hizb(ng-show="aya.hizb") Hizb Quarter &sdot; <b>{{aya.hizb}}</b>
                 %h5.ruku(ng-show="aya.ruku") Ruku' &sdot; <b>{{aya.ruku}}</b>
 
-              %img(ng-src="{{aya | ayaimg}}" alt="")
-              / %p.text.arab
-              /   / {{aya | ayatext}}
-              /   / %strong.number {{aya.aya | arab}}
+              / %img(ng-src="{{aya | ayaimg}}" alt="")
+              %p.text.arab
+                {{aya | ayatext}}
+                %strong.number {{aya.aya | arab}}
 
               %p.translation
-                %strong.number <span class="number-sura">{{aya.sura_id}}</span> : <span class="number-aya">{{aya.aya}}</span>
+                %strong.number
+                  %span.number-sura {{aya.sura_id}}
+                  \:
+                  %span.number-aya {{aya.aya}}
+
                 {{aya.translation}}
 
           .row

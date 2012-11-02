@@ -5,10 +5,10 @@
 
 (function() {
 
-  define(['libs/angular', 'services/services', 'services/message', 'services/quran', 'libs/angular-resource'], function(angular, services) {
+  define(['libs/angular', 'services/services', 'services/message', 'libs/angular-resource'], function(angular, services) {
     'use strict';
     return services.factory('helpers', [
-      '$resource', 'message', 'quran', function($resource, message, quran) {
+      '$resource', 'message', function($resource, message) {
         var suraPermalink, suraValid;
         suraValid = function(id) {
           return (1 <= id && id <= 114);
