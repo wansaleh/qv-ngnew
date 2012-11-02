@@ -1,5 +1,14 @@
 @import "partials/base";
 
+// Mixins
+
+@mixin concave {
+  // background-color: rgba(#555, .1);
+  background: #fff url(/assets/img/textures/rough_diagonal.png);
+  @include border-radius(4px);
+  @include box-shadow(inset 0 2px 8px rgba(#000, .1));
+}
+
 // =================================================================================================
 // Body and structure
 // =================================================================================================
@@ -11,7 +20,7 @@ html {
 body {
   position: relative;
   height: 100%;
-  background: #fff url(/assets/img/groovepaper.png);
+  background: #fff url(/assets/img/textures/groovepaper.png);
   font-weight: 300;
   font-size: 1rem;
   @include text-shadow(1px 1px 0 rgba(#fff, 1));
@@ -54,6 +63,10 @@ body {
   }
 }
 
+.tooltip {
+  @include text-shadow(none);
+}
+
 // =================================================================================================
 // Main styles
 // =================================================================================================
@@ -75,18 +88,18 @@ body {
   padding: 20px 0;
   width: 100%;
   border: 0;
-  background: #fff url(/assets/img/bright_squares.png);
-  z-index: 10;
+  background: #fff url(/assets/img/textures/bright_squares.png);
+  z-index: 20;
 
   &.slideup {
     top: -4rem;
   }
 
   h1 {
-    // @include text-shadow(1px 1px 0 rgba(#fff, .9));
-    // @include text-shadow(0 0 2px rgba($grayDark,.8));
     float: left;
     margin: 0;
+    font-size: 2rem;
+
     a {
       display: inline-block;
       color: $textColor;
@@ -157,33 +170,56 @@ body {
   position: relative;
   padding-top: 92px;
 
-  .sura-count {
-    margin-top: 5px;
-  }
+  .search-bar {
+    margin-bottom: 4px;
 
-  .search {
-    position: relative;
-    display: inline-block;
-    float: right;
-    margin-right: 2px;
-
-    input {
-      position: relative;
-      right: 0;
-      z-index: 1;
-      display: block;
-      padding-right: 30px;
-      font-size: .8rem;
+    .sura-count {
+      @include text-shadow(0 2px 5px rgba(#000, .5), 0 0 8px rgba(#fff, .5));
+      @include box-shadow(inset 0 2px 10px rgba(#000, .2));
+      margin: 0 2px;
+      padding: 5px 10px;
+      height: $baseLineHeight;
+      background: $gray url(/assets/img/textures/wild_oliva.png);
+      color: #fff;
+      line-height: $baseLineHeight;
+      @include border-radius(4px);
     }
-    button.clear-input {
-      @include box-shadow(none);
-      position: absolute;
-      top: 6px;
-      right: 5px;
-      z-index: 2;
-      padding: 0 3px;
-      border: none;
-      background: none;
+
+    .search {
+      position: relative;
+      display: inline-block;
+      float: right;
+      margin-right: 2px;
+
+      input {
+        @include box-shadow(inset 0 2px 8px rgba(#000, .15));
+        position: relative;
+        right: 0;
+        z-index: 1;
+        display: block;
+        margin: 0;
+        padding-right: 30px;
+        font-size: .9rem;
+        border-color: #e6e6e6;
+        &:focus {
+          @include box-shadow(inset 0 2px 8px rgba(#000, .15), 0 0 15px rgba($linkColor, .5));
+          border-color: lighten($linkColor, 30%);
+        }
+      }
+      button.clear-input {
+        @include box-shadow(none);
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        z-index: 2;
+        padding: 0 3px;
+        border: none;
+        background: none;
+        opacity: .5;
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
   }
 
@@ -246,7 +282,7 @@ body {
           &:hover {
             @include text-shadow(0 2px 5px rgba(#000, .5), 0 0 8px rgba(#fff, .5));
             @include box-shadow(inset 0 3px 20px rgba(#000, .6));
-            background: $gray url(/assets/img/wild_oliva.png);
+            background: $gray url(/assets/img/textures/wild_oliva.png);
             color: #fff;
 
             .primary .arab {
@@ -259,9 +295,26 @@ body {
   }
 }
 
+.overlay {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $grayLight url(/assets/img/textures/bgnoise_lg.png);
+  opacity: 0.6;
+  z-index: 10;
+
+  &.show {
+    display: block;
+  }
+}
+
 .ayas-wrapper {
   position: relative;
   padding-top: 150px;
+  min-height: 100%;
 
   .page-header .btn {
     font-weight: bold;
@@ -277,7 +330,7 @@ body {
     margin-top: 3rem;
 
     .aya-wrapper {
-      padding: 2rem 0;
+      padding: 2rem 0 2.5rem;
       border-bottom: 1px solid #f6f6f6;
       line-height: 1.7;
 
@@ -292,7 +345,7 @@ body {
 
       .juz, .ruku, .hizb, .manzil {
         display: inline-block;
-        margin: 0 3px;
+        margin: 0 2px;
         text-align: center;
         white-space: nowrap;
       }
@@ -300,16 +353,15 @@ body {
       .juz {
         @include text-shadow(0 2px 5px rgba(#000, .5), 0 0 8px rgba(#fff, .5));
         @include border-radius(4px);
-        @include box-shadow(inset 0 3px 20px rgba(#000, .6));
+        @include box-shadow(inset 0 2px 10px rgba(#000, .2));
         padding: 6px 14px;
-        background: $gray url(/assets/img/wild_oliva.png);
+        background: $gray url(/assets/img/textures/wild_oliva.png);
         color: #fff;
       }
+
       .ruku, .hizb, .manzil {
-        @include border-radius(4px);
-        @include box-shadow(inset 0 2px 8px rgba(#000, .2));
+        @include concave;
         padding: 4px 10px;
-        background-color: rgba(#555, .1);
         color: $gray;
         font-weight: normal;
       }
@@ -340,9 +392,7 @@ body {
           display: inline-block;
           padding: 0 8px;
           margin-right: 5px;
-          background-color: rgba(#555, .1);
-          @include border-radius(4px);
-          @include box-shadow(inset 0 2px 8px rgba(#000, .2));
+          @include concave;
           color: $grayLight;
 
           .number-sura {

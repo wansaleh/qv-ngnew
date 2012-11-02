@@ -21,7 +21,7 @@
                 %i.icon-caret-down(ng-show="isSorting('id', true)")
 
               %abtn(type="primary small" ng-class="{active: isSorting('tname')}" ng-click="changeSorting('tname')")
-                Name&nbsp;
+                Title&nbsp;
                 %i.icon-caret-up(ng-show="isSorting('tname', false)")
                 %i.icon-caret-down(ng-show="isSorting('tname', true)")
 
@@ -36,7 +36,7 @@
                 %i.icon-caret-down(ng-show="isSorting('ayas', true)")
 
   .container
-    .row
+    .row.search-bar
       .span6
         .sura-count(ng-show="filtered().length < 114")
           %i.icon-info-sign

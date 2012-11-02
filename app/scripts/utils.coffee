@@ -1,13 +1,5 @@
-define [
-  'jquery'
-  'lodash'
-  'underscore.string'
-],
-
+define ['jquery', 'lodash', 'underscore.string'],
 ($, _, _str) ->
-
-  # Arabic numbers, 1-9
-  arabicNums = ["\u0660", "\u0661", "\u0662", "\u0663", "\u0664", "\u0665", "\u0666", "\u0667", "\u0668", "\u0669"]
 
   utils =
     # ruby's Array.sample :P
@@ -25,18 +17,6 @@ define [
     # force obj to string
     to_s: (obj) ->
       (new String obj).toString()
-
-    # translate number to arabic.
-    arab: (number) ->
-      _.to_s(number).replace /[0-9]/g, (w) -> arabicNums[+w]
-
-    # Append suffixes to numbers.
-    ordinal: (number) ->
-      number = _.to_i number
-      n = number % 100;
-      suffix = _.words 'th st nd rd th'
-      ord = if n < 21 then (if n < 4 then suffix[n] else suffix[0]) else (if n % 10 > 4 then suffix[0] else suffix[n % 10])
-      number + ord
 
   # Extend with underscore.string.
   _.mixin _str

@@ -10,7 +10,7 @@
 
     var msie;
     msie = _.to_i((/msie (\d+)/.exec(navigator.userAgent.toLowerCase()) || [])[1]);
-    return directives.directive('qvHref', [
+    directives.directive('qvHref', [
       'html5', function(html5) {
         return {
           priority: 99,
@@ -29,6 +29,22 @@
         };
       }
     ]);
+    return directives.directive('qvTitle', function() {
+      return {
+        priority: 99,
+        link: function(scope, element, attr) {
+          return attr.$observe('qvTitle', function(value) {
+            if (!value) {
+              return;
+            }
+            attr.$set('title', value);
+            if (msie) {
+              return element.prop('title', value);
+            }
+          });
+        }
+      };
+    });
   });
 
 }).call(this);

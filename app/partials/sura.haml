@@ -1,3 +1,5 @@
+.overlay
+
 .ayas-wrapper
 
   .page-header.fixed#topnav
@@ -17,13 +19,13 @@
           .links
             .non-btn-group
               %span.muted {{suraInfo.type}}
-              %span.muted {{suraInfo.ayas}} ayas
+              %span.muted {{suraInfo.ayas}} ayas ({{ayas.collection.length}} loaded)
 
-              %a(qv-href="{{suraInfo | prevlink}}" ng-show="suraInfo | prevlink") Previous
-              %span.muted(ng-hide="suraInfo | prevlink") Previous
+              %a(qv-href="{{suraInfo.prev_link}}" ng-show="suraInfo.prev_link" qv-title="{{suraInfo.prev_title}}" ui-jq="tooltip") Previous
+              %span.muted(ng-hide="suraInfo.prev_link") Previous
 
-              %a(qv-href="{{suraInfo | nextlink}}" ng-show="suraInfo | nextlink") Next
-              %span.muted(ng-hide="suraInfo | nextlink") Next
+              %a(qv-href="{{suraInfo.next_link}}" ng-show="suraInfo.next_link" qv-title="{{suraInfo.next_title}}" ui-jq="tooltip") Next
+              %span.muted(ng-hide="suraInfo.next_link") Next
 
             .btn-group
               / %topbtn(ng-click="showSuras()")

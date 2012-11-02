@@ -1,8 +1,8 @@
 ###global define###
 
-define ['libs/store', 'libs/keymaster', 'controllers/controllers', 'services/quran', 'services/quran-index'],
+define ['libs/store', 'controllers/controllers', 'services/quran', 'services/quran-index'],
 
-(store, key, controllers) ->
+(store, controllers) ->
   'use strict'
 
   controllers.controller 'quranIndex',

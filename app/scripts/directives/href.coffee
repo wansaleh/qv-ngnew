@@ -21,3 +21,16 @@ define ['lodash', 'utils', 'directives/directives'],
         # to set the property as well to achieve the desired effect
         element.prop('href', value) if msie
   ]
+
+  directives.directive 'qvTitle', ->
+    priority: 99, # it needs to run after the attributes are interpolated
+    link: (scope, element, attr) ->
+      attr.$observe 'qvTitle', (value) ->
+        return if !value
+
+        attr.$set('title', value)
+
+        # on IE, if "ng:title" directive declaration is used and "title" attribute doesn't exist
+        # then calling element.setAttribute('title', 'foo') doesn't do anything, so we need
+        # to set the property as well to achieve the desired effect
+        element.prop('title', value) if msie

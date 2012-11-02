@@ -41,9 +41,9 @@ $sansFontFamily:        "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-se
 $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
 $monoFontFamily:        Menlo, Monaco, Menlo, Consolas, "Courier New", monospace !default;
 
-$baseFontSize:          17px !default;
+$baseFontSize:          15px !default;
 $baseFontFamily:        $sansFontFamily !default;
-$baseLineHeight:        22px !default;
+$baseLineHeight:        20px !default;
 $altFontFamily:         $serifFontFamily !default;
 
 $headingsFontFamily:    "ff-enzo-web", $sansFontFamily !default; // empty to use BS default, $baseFontFamily

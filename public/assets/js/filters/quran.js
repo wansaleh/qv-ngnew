@@ -5,7 +5,7 @@
 
 (function() {
 
-  define(['filters/filters', 'services/helpers', 'services/quran', 'utils'], function(filters) {
+  define(['filters/filters', 'services/quran', 'quranutils'], function(filters) {
     'use strict';
     filters.filter('l', [
       'html5', function(html5) {
@@ -23,34 +23,26 @@
         return !!!value;
       };
     });
-    filters.filter('suraValid', [
-      'helpers', function(helpers) {
-        return function(suraId) {
-          return helpers.suraValid(suraId);
-        };
-      }
-    ]);
-    filters.filter('permalink', [
-      'helpers', function(helpers) {
-        return function(sura) {
-          return helpers.suraPermalink(sura.id);
-        };
-      }
-    ]);
-    filters.filter('nextlink', [
-      'helpers', function(helpers) {
-        return function(sura) {
-          return helpers.suraPermalink(sura.id + 1);
-        };
-      }
-    ]);
-    filters.filter('prevlink', [
-      'helpers', function(helpers) {
-        return function(sura) {
-          return helpers.suraPermalink(sura.id - 1);
-        };
-      }
-    ]);
+    filters.filter('suraValid', function() {
+      return function(suraId) {
+        return _.suraValid(suraId);
+      };
+    });
+    filters.filter('permalink', function() {
+      return function(sura) {
+        return _.suraPermalink(sura.id);
+      };
+    });
+    filters.filter('nextlink', function() {
+      return function(sura) {
+        return _.suraPermalink(sura.id + 1);
+      };
+    });
+    filters.filter('prevlink', function() {
+      return function(sura) {
+        return _.suraPermalink(sura.id - 1);
+      };
+    });
     filters.filter('ayatext', function() {
       return function(aya) {
         if (aya.sura_id !== 1 && aya.aya === 1) {
@@ -100,18 +92,9 @@
         return _.ordinal(num);
       };
     });
-    filters.filter('truncate', function() {
+    return filters.filter('truncate', function() {
       return function(string, length) {
         return _.prune(string, length);
-      };
-    });
-    return filters.filter('highlight', function() {
-      return function(text, filter) {
-        if (!filter) {
-          return text;
-        } else {
-          return text.replace(new RegExp(filter, 'gi'), '<span class="match">$&</span>');
-        }
       };
     });
   });

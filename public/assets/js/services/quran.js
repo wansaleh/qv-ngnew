@@ -5,11 +5,11 @@
 
 (function() {
 
-  define(['libs/angular', 'libs/backbone', 'services/services', 'services/message', 'utils', 'qurandata'], function(angular, Backbone, services) {
+  define(['lodash', 'libs/angular', 'libs/backbone', 'services/services', 'services/message', 'quranutils', 'qurandata'], function(_, angular, Backbone, services) {
     'use strict';
     return services.factory('quran', [
       '$resource', 'message', function($resource, message) {
-        var data, i, infoName, infoVal, j, key, mapping, newKey, oldKey, quran, val, _i, _j, _len, _len1, _ref, _ref1;
+        var data, i, infoName, infoVal, j, key, mapping, newKey, oldKey, quran, val, _i, _j, _len, _len1, _ref, _ref1, _tname;
         quran = {
           markings: {
             Pause: ["\u06D6", "\u06D7", "\u06D8", "\u06D9", "\u06DA", "\u06DB"],
@@ -67,6 +67,22 @@
             quran[newKey].push(data);
           }
         }
+        _tname = function(id) {
+          if (quran.suras.get(id)) {
+            return quran.suras.get(id).get('tname');
+          } else {
+            return false;
+          }
+        };
+        quran.suras.each(function(sura) {
+          return sura.set({
+            permalink: _.suraPermalink(sura.id),
+            next_link: _.suraPermalink(sura.id + 1),
+            prev_link: _.suraPermalink(sura.id - 1),
+            next_title: _tname(sura.id + 1),
+            prev_title: _tname(sura.id - 1)
+          });
+        });
         window.quran = quran;
         return window.quran;
       }

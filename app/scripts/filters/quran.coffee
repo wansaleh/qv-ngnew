@@ -1,6 +1,6 @@
 ###global define###
 
-define ['filters/filters', 'services/helpers', 'services/quran', 'utils'], (filters) ->
+define ['filters/filters', 'services/quran', 'quranutils'], (filters) ->
   'use strict'
 
   # filter definitions
@@ -16,21 +16,17 @@ define ['filters/filters', 'services/helpers', 'services/quran', 'utils'], (filt
   filters.filter 'not', ->
     (value) -> !!!value
 
-  filters.filter 'suraValid', ['helpers', (helpers) ->
-    (suraId) -> helpers.suraValid suraId
-  ]
+  filters.filter 'suraValid', ->
+    (suraId) -> _.suraValid suraId
 
-  filters.filter 'permalink', ['helpers', (helpers) ->
-    (sura) -> helpers.suraPermalink(sura.id)
-  ]
+  filters.filter 'permalink', ->
+    (sura) -> _.suraPermalink(sura.id)
 
-  filters.filter 'nextlink', ['helpers', (helpers) ->
-    (sura) -> helpers.suraPermalink(sura.id + 1)
-  ]
+  filters.filter 'nextlink', ->
+    (sura) -> _.suraPermalink(sura.id + 1)
 
-  filters.filter 'prevlink', ['helpers', (helpers) ->
-    (sura) -> helpers.suraPermalink(sura.id - 1)
-  ]
+  filters.filter 'prevlink', ->
+    (sura) -> _.suraPermalink(sura.id - 1)
 
   filters.filter 'ayatext', ->
     (aya) ->
@@ -58,10 +54,3 @@ define ['filters/filters', 'services/helpers', 'services/quran', 'utils'], (filt
 
   filters.filter 'truncate', ->
     (string, length) -> _.prune string, length
-
-  filters.filter 'highlight', ->
-    (text, filter) ->
-      if !filter
-        text
-      else
-        text.replace(new RegExp(filter, 'gi'), '<span class="match">$&</span>')

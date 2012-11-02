@@ -9,6 +9,7 @@ define [
 
   # others
   'utils'
+  'quranutils'
 	'libs/angular-resource'
 	'libs/angular-ui'
 	'controllers/controllers'

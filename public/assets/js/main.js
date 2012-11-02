@@ -31,8 +31,8 @@
       'underscore.string': {
         deps: ['lodash']
       },
-      'libs/keymaster': {
-        exports: 'key'
+      'libs/bootstrap': {
+        deps: ['jquery']
       }
     }
   });

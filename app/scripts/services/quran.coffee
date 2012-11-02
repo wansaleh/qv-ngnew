@@ -1,15 +1,16 @@
 ###global define###
 
 define [
+  'lodash'
   'libs/angular'
   'libs/backbone'
   'services/services'
   'services/message'
-  'utils'
+  'quranutils'
   'qurandata'
 ],
 
-(angular, Backbone, services) ->
+(_, angular, Backbone, services) ->
   'use strict'
 
   services.factory 'quran', ['$resource', 'message', ($resource, message) ->
@@ -42,6 +43,20 @@ define [
         data = id: (i++) + 1
         data[key] = val[j] for key, j in infoVal.keys
         quran[newKey].push data
+
+    _tname = (id) ->
+      if quran.suras.get(id)
+        quran.suras.get(id).get('tname')
+      else
+        false
+
+    quran.suras.each (sura) ->
+      sura.set
+        permalink: _.suraPermalink(sura.id)
+        next_link: _.suraPermalink(sura.id + 1)
+        prev_link: _.suraPermalink(sura.id - 1)
+        next_title: _tname(sura.id + 1)
+        prev_title: _tname(sura.id - 1)
 
     # Expose for convenience
     window.quran = quran

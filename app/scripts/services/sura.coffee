@@ -58,8 +58,6 @@ define [
               when 'recommended' then 1
               when 'obligatory'  then 2
 
-
-
     fetch = (suraId, success = angular.noop) ->
       $win = $(window)
       $doc = $(document)

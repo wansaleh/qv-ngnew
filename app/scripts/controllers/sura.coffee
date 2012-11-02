@@ -1,9 +1,12 @@
 ###global define###
 
-define ['controllers/controllers', 'services/quran', 'services/sura'],
+define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/sura', 'libs/bootstrap'],
 
-(controllers) ->
+($, app, controllers) ->
   'use strict'
+
+  app.value 'ui.config',
+    jq: tooltip: placement: 'bottom'
 
   controllers.controller 'sura',
   ['$scope', '$rootScope', '$routeParams', 'quran', 'sura',
@@ -12,13 +15,18 @@ define ['controllers/controllers', 'services/quran', 'services/sura'],
     console.group 'sura controller: sura:', $routeParams.suraId
 
     $scope.suraInfo = quran.suras.get($routeParams.suraId)
-    $scope.suraInfo = $scope.suraInfo.toJSON() if _.isUndefined $scope.suraInfo.tname
+
+    $scope.suraInfo = $scope.suraInfo.toJSON() if $scope.suraInfo.toJSON?
 
     $rootScope.pageTitle = $scope.suraInfo.tname
     $scope.ayas = sura.ayas
 
     sura.reset()
-    sura.fetch $routeParams.suraId
+
+    $('.overlay').addClass('show')
+
+    sura.fetch $routeParams.suraId, ->
+      $('.overlay').removeClass('show')
 
     # $scope.showSuras = ->
     #   $('#topnav').addClass('slideup')
