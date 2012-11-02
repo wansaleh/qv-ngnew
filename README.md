@@ -1,3 +1,7 @@
-qv-ng-new: QuranVue, with AngularJS Seed flavor.
+qv-ngnew: QuranVue, with AngularJS. Using Cary Landholt's [AngularFun](https://github.com/CaryLandholt/AngularFun) base project.
 
-Run rake for webserver (port 9292) and CoffeeScript and Compass watchers. Also Livereload.
+Run:
+
+- `rake` for watchers
+
+- `rake s` for webserver (http://localhost:9292) and watchers. Also runs guard-reload.
