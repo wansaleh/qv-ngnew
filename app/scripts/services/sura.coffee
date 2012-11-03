@@ -17,7 +17,7 @@ define [
   ['$http', '$resource', 'message', 'quran',
   ($http, $resource, message, quran) ->
 
-    class Ayas extends Backbone.Collection
+    Ayas = Backbone.Collection.extend
       url: '/api/ayas.json'
       comparator: (aya) -> aya.get 'aya'
 

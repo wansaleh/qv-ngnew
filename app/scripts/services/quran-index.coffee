@@ -17,7 +17,7 @@ define [
   ['$resource', 'message', 'quran',
   ($resource, message, quran) ->
 
-    class Suras extends Backbone.Collection
+    Suras = Backbone.Collection.extend
       url: '/api/suras.js'
       comparator: (sura) -> sura.get 'id'
 

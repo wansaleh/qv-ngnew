@@ -4,31 +4,18 @@
 
 
 (function() {
-  var __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   define(['libs/angular', 'libs/backbone', 'libs/store', 'services/services', 'services/message', 'services/quran', 'libs/angular-resource'], function(angular, Backbone, store, services) {
     'use strict';
     return services.factory('quranIndex', [
       '$resource', 'message', 'quran', function($resource, message, quran) {
         var Suras, activity, fetch, reset, suras;
-        Suras = (function(_super) {
-
-          __extends(Suras, _super);
-
-          function Suras() {
-            return Suras.__super__.constructor.apply(this, arguments);
-          }
-
-          Suras.prototype.url = '/api/suras.js';
-
-          Suras.prototype.comparator = function(sura) {
+        Suras = Backbone.Collection.extend({
+          url: '/api/suras.js',
+          comparator: function(sura) {
             return sura.get('id');
-          };
-
-          return Suras;
-
-        })(Backbone.Collection);
+          }
+        });
         suras = {
           result: [],
           collection: new Suras

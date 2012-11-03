@@ -16,14 +16,6 @@ guard 'shell',
   end
 end
 
-# guard 'copy',
-#   from: 'app/scripts',
-#   to: 'public/assets/js',
-#   all_on_start: true do
-
-#   watch(%r{^(.+\.(js|html))$})
-# end
-
 # watch the app/styles dir
 guard 'sass',
   output: 'public/assets/css',
@@ -34,17 +26,9 @@ guard 'sass',
   watch %r{^app/styles/(.+\.s[ac]ss)$}
 end
 
-# # watch haml (for angular partials)
-# guard 'haml',
-#   :input  => 'app',
-#   :output => 'public',
-#   :all_on_start => true do
-
-#   watch(%r{^app/partials/(.+\.haml)})
-# end
-
 # watch changes for livereloading
 guard 'livereload' do
   watch(%r{.+\.(rb|html|haml)})
   watch(%r{^public/assets/(js|css)/.+$})
+  # watch(%r{.+\.(rb|coffee|js|css|haml|erb|html)})
 end

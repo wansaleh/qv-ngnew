@@ -4,31 +4,18 @@
 
 
 (function() {
-  var __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   define(['lodash', 'libs/angular', 'libs/backbone', 'services/services', 'services/message', 'services/quran', 'libs/angular-resource'], function(_, angular, Backbone, services) {
     'use strict';
     return services.factory('sura', [
       '$http', '$resource', 'message', 'quran', function($http, $resource, message, quran) {
         var Ayas, activity, ayaInfo, ayas, fetch, reset;
-        Ayas = (function(_super) {
-
-          __extends(Ayas, _super);
-
-          function Ayas() {
-            return Ayas.__super__.constructor.apply(this, arguments);
-          }
-
-          Ayas.prototype.url = '/api/ayas.json';
-
-          Ayas.prototype.comparator = function(aya) {
+        Ayas = Backbone.Collection.extend({
+          url: '/api/ayas.json',
+          comparator: function(aya) {
             return aya.get('aya');
-          };
-
-          return Ayas;
-
-        })(Backbone.Collection);
+          }
+        });
         ayas = {
           result: [],
           collection: new Ayas,

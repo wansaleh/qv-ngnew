@@ -33,6 +33,11 @@ class App < Sinatra::Base
     :escape_attrs => false,
     :preserve     => ["textarea", "pre", "code"]
 
+  # Compass and SASS options
+  Compass.add_project_configuration root_path("config.rb")
+  set :scss, Compass.sass_engine_options
+  set :sass, Compass.sass_engine_options
+
   # Not found error
   error 404 do
     content_type :html
