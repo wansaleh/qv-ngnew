@@ -8,3 +8,6 @@ build.xml
 .idea/*
 .sass-cache/
 _dls/
+
+public/assets/js/
+public/assets/css/
