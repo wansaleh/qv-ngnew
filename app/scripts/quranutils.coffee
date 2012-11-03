@@ -16,7 +16,7 @@ define ['lodash', 'utils'],
     # aya text
     ayaText: (aya) ->
       text = if aya.sura_id != 1 and aya.aya == 1 then aya.text.slice(39) else aya.text
-      text.replace /[\s\n]+/g, ' '
+      text.replace(/[\s\n]+/g, ' ').trim()
 
     # aya image
     ayaImg: (aya) ->

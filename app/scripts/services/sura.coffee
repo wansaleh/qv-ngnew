@@ -4,13 +4,14 @@ define [
   'lodash'
   'libs/angular'
   'libs/backbone'
+  'quranutils'
   'services/services'
   'services/message'
   'services/quran'
   'libs/angular-resource'
 ],
 
-(_, angular, Backbone, services) ->
+(_, angular, Backbone, qu, services) ->
   'use strict'
 
   services.factory 'sura',
@@ -37,6 +38,8 @@ define [
     ayaInfo = (ayas) ->
       for aya in ayas
         _.extend aya,
+          ayatext: qu.ayaText(aya)
+
           juz: do ->
             juz = _.first quran.juzs.where(sura: aya.sura_id, aya: aya.aya)
             if juz? then juz.id else false
@@ -107,5 +110,4 @@ define [
     fetch: fetch
     reset: reset
     ayas: ayas
-    activity: activity
   ]

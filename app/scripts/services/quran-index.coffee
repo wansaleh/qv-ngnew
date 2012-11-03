@@ -23,28 +23,30 @@ define [
 
     suras =
       result: []
-      collection: new Suras
+      collection: quran.suras
+      # collection: new Suras
 
-    suras.collection.on 'reset', (res) ->
-      suras.result = res.toJSON()
+    suras.result = suras.collection.toJSON()
 
-    activity = $resource '/api/suras.json'
+    # suras.collection.on 'reset', (res) ->
+    #   suras.result = res.toJSON()
 
-    fetch = (success = angular.noop) ->
-      if _.isUndefined(suras_store = store.get('suras.result'))
-        activity.query (resource, headers) ->
-          suras.collection.reset(resource)
-          store.set('suras.result', resource)
-          success()
-      else
-        suras.collection.reset(suras_store)
+    # activity = $resource '/api/suras.json'
 
-    reset = ->
-      suras.result = []
-      suras.collection.reset()
+    # fetch = (success = angular.noop) ->
+    #   if _.isUndefined(suras_store = store.get('suras.result'))
+    #     activity.query (resource, headers) ->
+    #       suras.collection.reset(resource)
+    #       store.set('suras.result', resource)
+    #       success()
+    #   else
+    #     suras.collection.reset(suras_store)
 
-    fetch: fetch
-    reset: reset
+    # reset = ->
+    #   suras.result = []
+    #   suras.collection.reset()
+
+    # fetch: fetch
+    # reset: reset
     suras: suras
-    activity: activity
   ]

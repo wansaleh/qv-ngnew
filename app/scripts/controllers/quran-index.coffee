@@ -23,9 +23,9 @@ define ['libs/store', 'controllers/controllers', 'services/quran', 'services/qur
     # set title
     $rootScope.pageTitle = "Index"
 
-    # fetch from db/localStorage
+    # fetch
     $scope.suras = quranIndex.suras
-    quranIndex.fetch()
+    # quranIndex.fetch()
 
     # sort attrs
     $scope.sort =

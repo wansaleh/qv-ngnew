@@ -323,7 +323,7 @@ body {
 
 .ayas-wrapper {
   position: relative;
-  padding-top: 150px;
+  padding-top: 180px;
   min-height: 100%;
 
   .page-header .btn {
@@ -348,7 +348,7 @@ body {
   }
 
   .ayas {
-    margin-top: 3rem;
+    margin-top: 4rem;
 
     .aya-wrapper {
       padding: 3rem 0;
@@ -390,7 +390,7 @@ body {
       .number {
         display: inline-block;
         padding: 0 8px;
-        margin-right: 5px;
+        margin-right: 10px;
         @include concave;
         color: $grayLight;
 
@@ -403,10 +403,15 @@ body {
       }
 
       .text {
-        font-size: 3rem;
-        line-height: 1.4;
+        span {
+          display: inline-block;
+          font-size: 2.8rem;
+          line-height: 1.4;
+        }
 
         .number {
+          display: inline-block;
+          margin-top: -20px;
           font-size: 2rem;
           line-height: .9;
           letter-spacing: -4px;

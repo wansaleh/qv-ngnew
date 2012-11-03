@@ -38,7 +38,7 @@
   .container
     .row.search-bar
       .span12
-        .sura-count.alert.alert-success(ng-class="{show: filtered().length < 114}")
+        .sura-count.alert.alert-info(ng-class="{show: filtered().length < 114}")
           %i.icon-info-sign
           %strong {{filtered().length}}
           suras found for "{{search}}".

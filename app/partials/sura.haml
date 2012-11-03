@@ -19,6 +19,9 @@
           .links
             .non-btn-group
               %span.muted {{suraInfo.type}}
+
+              %span.muted {{suraInfo.order | ordinal}} revealed
+
               %span.muted {{suraInfo.ayas}} ayas ({{ayas.loaded}} loaded)
 
               %a(qv-href="{{suraInfo.prev_link}}" ng-show="suraInfo.prev_link" qv-title="{{suraInfo.prev_title}}") Previous
@@ -62,7 +65,7 @@
 
               / %img(ng-src="{{aya | ayaimg}}" alt="")
               %p.text.arab
-                {{aya | ayatext}}
+                %span {{aya.ayatext}}
                 %strong.number {{aya.aya | arab}}
 
               %p.translation
