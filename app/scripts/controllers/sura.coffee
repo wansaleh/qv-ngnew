@@ -5,9 +5,6 @@ define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/
 ($, app, controllers) ->
   'use strict'
 
-  app.value 'ui.config',
-    jq: tooltip: placement: 'bottom'
-
   controllers.controller 'sura',
   ['$scope', '$rootScope', '$location', '$routeParams', 'quran', 'sura',
   ($scope, $rootScope, $location, $routeParams, quran, sura) ->
