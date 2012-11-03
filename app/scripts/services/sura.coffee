@@ -92,7 +92,7 @@ define [
           success()
 
       _lazyloader = _.throttle ->
-        _query() if $win.scrollTop() > $doc.height() - $win.height() and
+        _query() if $win.scrollTop() > $doc.height() - 2*$win.height() and
           _offset() < suraInfo.get 'ayas'
       , 200
 
