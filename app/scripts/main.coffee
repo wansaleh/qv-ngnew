@@ -66,7 +66,12 @@ require [
         templateUrl: tpl 'quran-index'
         reloadOnSearch: true
 
-      .when '/sura/:suraId'
+      .when '/sura/:sura'
+        controller: 'sura'
+        templateUrl: tpl 'sura'
+        reloadOnSearch: true
+
+      .when '/sura/:sura/:aya'
         controller: 'sura'
         templateUrl: tpl 'sura'
         reloadOnSearch: true
@@ -76,17 +81,17 @@ require [
   ]
 
   app.run ['$rootScope', '$log', ($rootScope, $log) ->
-    # $rootScope.$on 'error:unauthorized', (event, response) ->
-    #   $log.error 'unauthorized'
+    $rootScope.$on 'error:unauthorized', (event, response) ->
+      $log.error 'unauthorized'
 
-    # $rootScope.$on 'error:forbidden', (event, response) ->
-    #   $log.error 'forbidden'
+    $rootScope.$on 'error:forbidden', (event, response) ->
+      $log.error 'forbidden'
 
-    # $rootScope.$on 'error:403', (event, response) ->
-    #   $log.error '403'
+    $rootScope.$on 'error:403', (event, response) ->
+      $log.error '403'
 
-    # $rootScope.$on 'success:ok', (event, response) ->
-    #   $log.info 'success'
+    $rootScope.$on 'success:ok', (event, response) ->
+      $log.info 'success'
 
     # fire an event related to the current route
     $rootScope.$on '$routeChangeSuccess', (event, currentRoute, priorRoute) ->

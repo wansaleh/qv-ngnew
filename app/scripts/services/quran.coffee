@@ -58,5 +58,5 @@ define [
   services.factory 'quran', -> quran
 
   # Expose for convenience
-  # window.quran = quran
+  window.quran = quran
   quran

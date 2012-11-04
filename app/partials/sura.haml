@@ -58,10 +58,10 @@
           .row
             .span12
               .info(ui-if="aya.juz || aya.hizb || aya.ruku || aya.manzil")
-                %h4.juz(ng-show="aya.juz") Juz &sdot; <b>{{aya.juz}}</b>
-                %h5.manzil(ng-show="aya.manzil") Manzil &sdot; <b>{{aya.manzil}}</b>
-                %h5.hizb(ng-show="aya.hizb") Hizb Quarter &sdot; <b>{{aya.hizb}}</b>
-                %h5.ruku(ng-show="aya.ruku") Ruku' &sdot; <b>{{aya.ruku}}</b>
+                %h4.juz(ng-show="aya.juz") Juz &sdot; <b>{{aya.juz.id}}</b>
+                %h5.manzil(ng-show="aya.manzil") Manzil &sdot; <b>{{aya.manzil.id}}</b>
+                %h5.hizb(ng-show="aya.hizb") Hizb Quarter &sdot; <b>{{aya.hizb.id}}</b>
+                %h5.ruku(ng-show="aya.ruku") Ruku' &sdot; <b>{{aya.ruku.id}}</b>
 
               / %img(ng-src="{{aya | ayaimg}}" alt="")
               %p.text.arab

@@ -10,7 +10,7 @@ class App < Sinatra::Base
     showIndex
   end
 
-  get "/sura/:id" do
+  get "/sura/:id/?:aya_id?" do
     id = params[:id].to_i
 
     if valid?(id)

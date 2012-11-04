@@ -9,7 +9,8 @@ define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/
   ['$scope', '$rootScope', '$location', '$routeParams', 'quran', 'sura',
   ($scope, $rootScope, $location, $routeParams, quran, sura) ->
 
-    console.group 'sura controller: sura:', $routeParams.suraId
+    console.group 'sura controller - sura:', $routeParams.sura
+    console.info 'start aya:', $routeParams.aya
 
     # back to top
     $('body').stop().scrollTo(duration: 0)
@@ -20,7 +21,7 @@ define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/
     # ========================================================================
     # models
 
-    $scope.suraInfo = quran.suras.get($routeParams.suraId)
+    $scope.suraInfo = quran.suras.get($routeParams.sura)
     $scope.suraInfo = $scope.suraInfo.toJSON() if $scope.suraInfo.toJSON?
     $scope.ayas = sura.ayas
 
@@ -31,7 +32,7 @@ define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/
     sura.reset()
 
     # $scope.overlay = true
-    sura.fetch $routeParams.suraId, ->
+    sura.fetch $routeParams.sura, $routeParams.aya, ->
       _.defer ->
         if hash = $location.hash()
           $("##{hash}").stop().scrollTo(offset: -100)

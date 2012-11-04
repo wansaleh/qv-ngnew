@@ -1,4 +1,10 @@
-define ['jquery', 'lodash', 'underscore.string', 'libs/backbone'],
+define [
+  'jquery'
+  'lodash'
+  'underscore.string'
+  'libs/backbone'
+],
+
 ($, _, _str, Backbone) ->
 
   utils =
@@ -37,7 +43,6 @@ define ['jquery', 'lodash', 'underscore.string', 'libs/backbone'],
   # patch Backbone.Collection to include whereFirst
   Backbone.Collection::whereFirst = do ->
     where = Backbone.Collection::where
-
     ->
       _.first where.apply this, arguments
 

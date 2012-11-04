@@ -39,34 +39,21 @@ define [
       for aya in ayas
         _.extend aya,
           ayatext: qu.ayaText(aya)
-
-          juz: do ->
-            juz = _.first quran.juzs.where(sura: aya.sura_id, aya: aya.aya)
-            if juz? then juz.id else false
-
-          hizb: do ->
-            hizb = _.first quran.hizbs.where(sura: aya.sura_id, aya: aya.aya)
-            if hizb? then hizb.id else false
-
-          ruku: do ->
-            ruku = _.first quran.rukus.where(sura: aya.sura_id, aya: aya.aya)
-            if ruku? then ruku.id else false
-
-          manzil: do ->
-            manzil = _.first quran.manzils.where(sura: aya.sura_id, aya: aya.aya)
-            if manzil? then manzil.id else false
-
+          juz: quran.juzs.whereFirst(sura: aya.sura_id, aya: aya.aya)
+          hizb: quran.hizbs.whereFirst(sura: aya.sura_id, aya: aya.aya)
+          ruku: quran.rukus.whereFirst(sura: aya.sura_id, aya: aya.aya)
+          manzil: quran.manzils.whereFirst(sura: aya.sura_id, aya: aya.aya)
           sajda: do ->
-            sajda = _.first quran.sajdas.where(sura: aya.sura_id, aya: aya.aya)
+            sajda = quran.sajdas.whereFirst(sura: aya.sura_id, aya: aya.aya)
             if !sajda then 0 else switch sajda.get('hukm')
               when 'recommended' then 1
               when 'obligatory'  then 2
 
-    fetch = (suraId, success = angular.noop) ->
+    fetch = (suraId, ayaId, success = angular.noop) ->
       $win = $(window)
       $doc = $(document)
 
-      console.group 'sura service:', suraId
+      console.group 'sura service - sura:', suraId
 
       # stop scroll event
       $win.off 'scroll', _lazyloader
@@ -77,7 +64,7 @@ define [
         if last = ayas.collection.last() then last.get('aya') else 0
 
       _query = ->
-        console.log 'start sura:', suraId, 'aya:', _offset()+1
+        console.log 'start sura:', suraId, 'aya offset:', _offset()+1
 
         activity.query
           sura_id: suraId
