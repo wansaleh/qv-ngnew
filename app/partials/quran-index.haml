@@ -55,9 +55,9 @@
             %li(ng-repeat="sura in (filtered() | orderBy:sort.attr:sort.desc)")
               %a(qv-href="{{sura | permalink}}")
                 .primary
+                  %span.arab {{sura.name}}
                   %span.id {{sura.id | pad}}
                   %span.tname {{sura.tname}}
-                  %span.arab {{sura.name}}
                 .secondary
-                  %span.ename {{sura.ename | truncate:20}}
                   %span.ayas {{sura.ayas}} ayas, {{sura.order | ordinal}}
+                  %span.ename {{sura.ename | truncate:20}}
