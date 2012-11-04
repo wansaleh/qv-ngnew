@@ -1,5 +1,5 @@
-define ['jquery', 'lodash', 'underscore.string'],
-($, _, _str) ->
+define ['jquery', 'lodash', 'underscore.string', 'libs/backbone'],
+($, _, _str, Backbone) ->
 
   utils =
     # ruby's Array.sample :P
@@ -27,11 +27,19 @@ define ['jquery', 'lodash', 'underscore.string'],
   # patch _.each, to include _.words
   _.each = do ->
     each = _.each
+
     ->
       args = Array::slice.call(arguments)
       obj = args.shift()
       obj = _.words obj if _.isString obj
       each.apply _, [obj].concat(args)
+
+  # patch Backbone.Collection to include whereFirst
+  Backbone.Collection::whereFirst = do ->
+    where = Backbone.Collection::where
+
+    ->
+      _.first where.apply this, arguments
 
   # jQuery small plugins
   $.fn.scrollTo = (options = {}) ->

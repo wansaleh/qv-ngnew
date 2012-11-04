@@ -8,7 +8,6 @@ require.config
     # all named library definitions goes here
     'jquery': 'libs/jquery'
     'lodash': 'libs/lodash'
-    'backbone': 'libs/backbone'
     'underscore.string': 'libs/underscore.string'
     'string-format': 'libs/string-format'
 
