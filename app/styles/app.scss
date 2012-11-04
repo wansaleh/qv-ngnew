@@ -332,7 +332,12 @@ body {
 
   .ayas-container {
     .bismillah {
-      h2 {
+      h2.arab {
+        font-size: 3rem;
+        text-align: center;
+      }
+
+      h2.translation {
         text-align: center;
         font-size: 2rem;
         span, small {

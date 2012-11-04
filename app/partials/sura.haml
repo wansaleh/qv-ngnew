@@ -18,11 +18,15 @@
 
           .links
             .non-btn-group
-              %span.muted {{suraInfo.type}}
+              %span.muted
+                {{suraInfo.type}}
 
-              %span.muted {{suraInfo.order | ordinal}} revealed
+              %span.muted
+                {{suraInfo.order | ordinal}} revealed
 
-              %span.muted {{suraInfo.ayas}} ayas ({{ayas.loaded}} loaded)
+              %span.muted
+                {{suraInfo.ayas}} ayas
+                / ({{ayas.loaded}} loaded)
 
               %a(qv-href="{{suraInfo.prev_link}}" ng-show="suraInfo.prev_link" qv-title="{{suraInfo.prev_title}}") Previous
               %span.muted(ng-hide="suraInfo.prev_link") Previous
@@ -44,9 +48,9 @@
       .container
         .row
           .span12
-            %h2
-              %img(src="/assets/img/ayas/bismillah-center.png" alt="")
-              / %span.arab بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+            %h2.arab
+              / %img(src="/assets/img/ayas/bismillah-center.png" alt="")
+              بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
 
             %h2.translation
               %span Bismillahirrahmanirrahim

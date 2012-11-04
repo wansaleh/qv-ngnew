@@ -7,6 +7,7 @@ desc "Start everything"
 task :watch do
   rm_rf './public/assets/js'
   rm_rf './public/assets/css'
+  rm_rf './public/partials'
   run_command 'powder restart', 'guard'
 end
 
@@ -14,6 +15,7 @@ desc "Start server"
 task :server do
   rm_rf './public/assets/js'
   rm_rf './public/assets/css'
+  rm_rf './public/partials'
   run_command 'puma', 'guard'
 end
 

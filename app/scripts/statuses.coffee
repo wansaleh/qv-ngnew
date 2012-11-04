@@ -1,8 +1,8 @@
 ###global define###
 
 define ->
-	'use strict'
+  'use strict'
 
-	200: 'ok'
-	401: 'unauthorized'
-	403: 'forbidden'
+  200: 'ok'
+  401: 'unauthorized'
+  403: 'forbidden'
