@@ -26,13 +26,17 @@
 
               %span.muted
                 {{suraInfo.ayas}} ayas
-                / ({{ayas.loaded}} loaded)
+                [{{ayas.loaded}} loaded]
 
-              %a(qv-href="{{suraInfo.prev_link}}" ng-show="suraInfo.prev_link" qv-title="{{suraInfo.prev_title}}") Previous
-              %span.muted(ng-hide="suraInfo.prev_link") Previous
+              %a(qv-href="{{suraInfo.prev_link}}" ng-show="suraInfo.prev_link" qv-title="{{suraInfo.prev_title}}")
+                %i.icon-chevron-left
+              %span.muted(ng-hide="suraInfo.prev_link")
+                %i.icon-chevron-left
 
-              %a(qv-href="{{suraInfo.next_link}}" ng-show="suraInfo.next_link" qv-title="{{suraInfo.next_title}}") Next
-              %span.muted(ng-hide="suraInfo.next_link") Next
+              %a(qv-href="{{suraInfo.next_link}}" ng-show="suraInfo.next_link" qv-title="{{suraInfo.next_title}}")
+                %i.icon-chevron-right
+              %span.muted(ng-hide="suraInfo.next_link")
+                %i.icon-chevron-right
 
             .btn-group
               / %topbtn(ng-click="showSuras()")

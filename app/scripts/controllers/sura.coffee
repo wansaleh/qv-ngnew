@@ -33,10 +33,6 @@ define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/
 
     # $scope.overlay = true
     sura.fetch $routeParams.sura, $routeParams.aya, ->
-      _.defer ->
-        if hash = $location.hash()
-          $("##{hash}").stop().scrollTo(offset: -100)
-
       $scope.overlay = false
 
     # ========================================================================

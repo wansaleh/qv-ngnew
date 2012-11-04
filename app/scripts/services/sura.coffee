@@ -63,13 +63,19 @@ define [
       _offset = ->
         if last = ayas.collection.last() then last.get('aya') else 0
 
+      _limit = ->
+        limit = 20
+        ayaId = _.to_i ayaId
+        limit = limit * Math.ceil(ayaId/limit) if ayaId?
+        limit
+
       _query = ->
         console.log 'start sura:', suraId, 'aya offset:', _offset()+1
 
         activity.query
           sura_id: suraId
           offset: _offset()
-          limit: 20
+          limit: _limit()
         , (resource, headers) ->
           # append in collection
           ayas.collection.add(ayaInfo resource)
@@ -80,6 +86,11 @@ define [
           # attach scroll event
           $win.on 'scroll', _lazyloader
           success()
+
+          _.defer ->
+            if ayaId?
+              $("#aya-#{ayaId}").stop().scrollTo(offset: -100, duration: 0)
+
 
       _lazyloader = _.throttle ->
         _query() if $win.scrollTop() > $doc.height() - 2*$win.height() and
