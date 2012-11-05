@@ -6,6 +6,7 @@ gem 'sinatra-contrib',   :require => ['sinatra/reloader', 'sinatra/content_for']
 
 # backend
 gem 'mysql2'
+gem 'sqlite3'
 gem 'sequel'
 gem 'json'
 
