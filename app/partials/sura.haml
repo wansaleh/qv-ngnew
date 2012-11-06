@@ -1,4 +1,4 @@
-/ .overlay(ng-show="overlay")
+.overlay(ng-show="overlay")
 
 .ayas-wrapper
 
@@ -11,36 +11,29 @@
               {{suraInfo.tname}}
               %small {{suraInfo.ename}}
               %small.arab {{suraInfo.name}}
-            / %small.info
-            /   {{suraInfo.ayas}} ayas,
-            /   {{suraInfo.type}}
-            /   / {{ayas.collection.length}} loaded
 
           .links
             .non-btn-group
               %span.muted
+                %strong {{suraInfo.order | ordinal}}
+                revealed
+                &sdot;
                 {{suraInfo.type}}
-
-              %span.muted
-                {{suraInfo.order | ordinal}} revealed
-
-              %span.muted
-                {{suraInfo.ayas}} ayas
-                [{{ayas.loaded}} loaded]
+                &sdot;
+                %strong {{suraInfo.ayas}}
+                ayas
 
               %a(qv-href="{{suraInfo.prev_link}}" ng-show="suraInfo.prev_link" qv-title="{{suraInfo.prev_title}}")
-                %i.icon-chevron-left
+                Previous
               %span.muted(ng-hide="suraInfo.prev_link")
-                %i.icon-chevron-left
+                Previous
 
               %a(qv-href="{{suraInfo.next_link}}" ng-show="suraInfo.next_link" qv-title="{{suraInfo.next_title}}")
-                %i.icon-chevron-right
+                Next
               %span.muted(ng-hide="suraInfo.next_link")
-                %i.icon-chevron-right
+                Next
 
             .btn-group
-              / %topbtn(ng-click="showSuras()")
-              /   %i.icon-list
               %abtn(type="primary small" qv-href="/")
                 %i.icon-home
                 Home

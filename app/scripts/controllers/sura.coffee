@@ -31,9 +31,11 @@ define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/
     # reset ayas collection
     sura.reset()
 
-    # $scope.overlay = true
-    sura.fetch $routeParams.sura, $routeParams.aya, ->
-      $scope.overlay = false
+    $scope.overlay = true
+    sura.fetch $routeParams.sura, $routeParams.aya, -> $scope.overlay = false
+
+    $scope.$watch 'ayas.loaded', ->
+      console.log 'Ayas loaded:', $scope.ayas.loaded
 
     # ========================================================================
     # functions

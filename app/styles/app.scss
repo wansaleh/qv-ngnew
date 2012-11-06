@@ -112,7 +112,7 @@ body {
     }
     small {
       display: inline-block;
-      margin-left: 5px;
+      margin-left: 2px;
       font-size: .7em;
     }
     small.arab {
@@ -307,7 +307,7 @@ body {
 
 .overlay {
   position: absolute;
-  display: none;
+  // display: none;
   top: 0;
   left: 0;
   width: 100%;
@@ -315,10 +315,6 @@ body {
   background: $grayLight url(/assets/img/textures/bgnoise_lg.png);
   opacity: 0.6;
   z-index: 10;
-
-  // &.show {
-  //   display: block;
-  // }
 }
 
 .ayas-wrapper {
@@ -356,9 +352,15 @@ body {
     margin-top: 4rem;
 
     .aya-wrapper {
+      position: relative;
       padding: 3rem 0;
-      border-bottom: 1px solid #f6f6f6;
+      border-bottom: 2px solid #f6f6f6;
       line-height: 1.7;
+      @include transition(all .3s ease);
+
+      &:hover {
+        border-bottom-color: #ddd;
+      }
 
       &:nth-child(even) {
         background-color: rgba(#fff, .8);
