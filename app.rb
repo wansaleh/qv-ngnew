@@ -13,7 +13,7 @@ end
 class App < Sinatra::Base
 
   # Sequel DB connection
-  DB = Sequel.sqlite(root_path("db/db2.sqlite"))
+  DB = Sequel.sqlite(root_path("db/quran.sqlite"))
   # DB = Sequel.mysql2 "quran_sinatra", user: "root", password: "www", host: "localhost"
 
   # Settings
