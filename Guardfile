@@ -32,3 +32,7 @@ guard 'livereload' do
   watch(%r{^public/assets/(js|css)/.+$})
   # watch(%r{.+\.(rb|coffee|js|css|haml|erb|html)})
 end
+
+# guard 'livereload' do
+#   watch(%r{.+\.(rb|coffee|js|scss|haml|erb|html)})
+# end

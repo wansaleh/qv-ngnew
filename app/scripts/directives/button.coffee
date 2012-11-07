@@ -1,5 +1,3 @@
-###global define###
-
 define ['directives/directives'],
 (directives) ->
 	'use strict'

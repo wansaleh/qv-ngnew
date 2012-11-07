@@ -1,5 +1,3 @@
-###global define###
-
 define [
   'lodash'
   'libs/angular'

@@ -1,5 +1,3 @@
-###global define###
-
 define [
   'lodash'
   'libs/angular'
@@ -8,7 +6,6 @@ define [
   'services/services'
   'services/message'
   'services/quran'
-  'libs/angular-resource'
 ],
 
 (_, angular, Backbone, qu, services) ->

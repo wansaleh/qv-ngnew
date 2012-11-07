@@ -1,5 +1,3 @@
-###global define###
-
 define ['services/services'], (services) ->
   'use strict'
 

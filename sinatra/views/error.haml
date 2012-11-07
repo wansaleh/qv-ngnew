@@ -1,17 +1,32 @@
-#error
-  .container
-    .row
-      .span12
-        .hero-unit
-          %h1
-            Oopsie.
+!!!
+%html(lang="en")
+  %head
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+    %meta(name="viewport" content="width=device-width,initial-scale=1")
+    %title(ng-bind-template="QuranVue &middot; {{pageTitle}}")
 
-          %p
-            - if @error
-              = @error
-            - else
-              Sorry. The file you requsted was not found.
+    / Application styles.
+    %link(rel="stylesheet" href="/assets/css/app.css?v=#{Time.now.to_i}")
 
-          %a.btn.btn-large.btn-danger(href="/")
-            %i.icon-home
-            Home
+  %body(class="#{@body_class}")
+
+    #error
+      .container
+        .row
+          .span12
+            .hero-unit
+              %h1
+                Oopsie.
+
+              .spacer1
+
+              %p
+                - if @error
+                  = @error
+                - else
+                  Sorry. The URL you requsted was not found.
+
+              %a.btn.btn-large.btn-danger(href="/")
+                %i.icon-home
+                Home

@@ -1,5 +1,3 @@
-###global define###
-
 define ['lodash', 'utils', 'directives/directives'],
 (_, utils, directives) ->
   'use strict'

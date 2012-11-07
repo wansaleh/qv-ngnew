@@ -1,5 +1,3 @@
-###global define###
-
 define ['require', 'libs/angular', 'app'], (require, angular) ->
   'use strict'
 

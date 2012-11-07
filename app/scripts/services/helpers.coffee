@@ -1,5 +1,3 @@
-###global define###
-
 define [
   'libs/angular'
   'services/services'

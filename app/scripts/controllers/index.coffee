@@ -1,15 +1,13 @@
-###global define###
-
-define ['libs/store', 'controllers/controllers', 'services/quran', 'services/quran-index'],
+define ['libs/store', 'controllers/controllers', 'services/quran', 'services/index'],
 
 (store, controllers) ->
   'use strict'
 
-  controllers.controller 'quranIndex',
-  ['$scope', '$rootScope', '$routeParams', '$filter', 'quran', 'quranIndex'
-  ($scope, $rootScope, $routeParams, $filter, quran, quranIndex) ->
+  controllers.controller 'index',
+  ['$scope', '$rootScope', '$routeParams', '$filter', 'quran', 'index'
+  ($scope, $rootScope, $routeParams, $filter, quran, index) ->
 
-    console.group 'quranIndex controller'
+    console.group 'index controller'
 
     # back to top
     $('body').stop().scrollTo(duration: 0)
@@ -23,9 +21,8 @@ define ['libs/store', 'controllers/controllers', 'services/quran', 'services/qur
     # set title
     $rootScope.pageTitle = "Index"
 
-    # fetch
-    $scope.suras = quranIndex.suras
-    # quranIndex.fetch()
+    # suras
+    $scope.suras = index.suras
 
     # sort attrs
     $scope.sort =

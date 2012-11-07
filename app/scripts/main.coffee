@@ -35,8 +35,9 @@ require [
   'app'
   'bootstrap'
   'qurandata'
-  'controllers/quran-index'
+  'controllers/index'
   'controllers/sura'
+  'directives/view'
   'directives/href'
   'directives/button'
   'filters/quran'
@@ -57,13 +58,13 @@ require [
 
     $routeProvider
       .when '/'
-        controller: 'quranIndex'
-        templateUrl: tpl 'quran-index'
+        controller: 'index'
+        templateUrl: tpl 'quran'
         reloadOnSearch: true
 
       .when '/index/:sort'
-        controller: 'quranIndex'
-        templateUrl: tpl 'quran-index'
+        controller: 'index'
+        templateUrl: tpl 'quran'
         reloadOnSearch: true
 
       .when '/sura/:sura'

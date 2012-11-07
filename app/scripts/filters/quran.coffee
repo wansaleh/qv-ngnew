@@ -1,5 +1,3 @@
-###global define###
-
 define ['filters/filters', 'quranutils', 'utils', 'lodash'],
 (filters, qu, utils, _) ->
   'use strict'
