@@ -1,11 +1,10 @@
 .index-wrapper
-
   .page-header.fixed
     .container
       .row
         .span12
           %h1
-            %a(qv-href="/")
+            %a(my-href="/")
               QuranVue
               %small Bismillahirrahmanirrahim
               / %small.arab بسْم ٱللّه ٱلرّحْمٰن ٱلرّحيم
@@ -38,22 +37,20 @@
   .container
     .row.search-bar
       .span12
-        .sura-count.alert.alert-info(ng-class="{show: filtered().length < 114}")
+        .sura-count.alert.alert-info(ng-class="{show: filterText.length}")
           %i.icon-info-sign
           %strong {{filtered().length}}
-          suras found for "{{search}}".
+          suras found for "{{filterText}}".
 
         .search
-          %input.search-query(type="text" placeholder="Search sura&hellip;" ng-model="search")>
-          %btn.clear-input(btn ng-click="clearSearch()" ng-show="search != ''")
-            %i.icon-remove-circle
+          %input#filter(type="text" placeholder="Filter suras&hellip;" ng-model="filterText" clear-input)>
 
     .row
       .span12
         %nav.suras
           %ul
             %li(ng-repeat="sura in (filtered() | orderBy:sort.attr:sort.desc)")
-              %a(qv-href="{{sura | permalink}}")
+              %a(my-href="{{sura | permalink}}")
                 .primary
                   %span.arab {{sura.name}}
                   %span.id {{sura.id | pad}}

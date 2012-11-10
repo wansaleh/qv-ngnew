@@ -62,7 +62,7 @@ define [
 
       _limit = ->
         limit = 20
-        ayaId = _.to_i ayaId
+        ayaId = _.int ayaId
         limit = limit * Math.ceil(ayaId/limit) if ayaId?
         limit
 

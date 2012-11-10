@@ -1,10 +1,7 @@
-###global define, require###
-
 require.config
   urlArgs: "v=" + (new Date()).getTime()
 
   paths:
-
     # all named library definitions goes here
     'jquery': 'libs/jquery'
     'lodash': 'libs/lodash'
@@ -13,34 +10,30 @@ require.config
 
   shim:
     'libs/angular':
+      deps: ['jquery']
       exports: 'angular'
-
-    'libs/angular-resource':
-      deps: ['libs/angular']
-
-    'libs/angular-ui':
-      deps: ['libs/angular']
-
+    'libs/angular-resource': deps: ['libs/angular']
+    'libs/angular-ui': deps: ['libs/angular']
     'libs/backbone':
       deps: ['lodash', 'jquery']
       exports: 'Backbone'
-
-    'underscore.string':
-      deps: ['lodash']
-
-    'libs/bootstrap':
-      deps: ['jquery']
+    'underscore.string': deps: ['lodash']
+    'libs/bootstrap': deps: ['jquery']
 
 require [
+  # essentials
   'app'
   'bootstrap'
   'qurandata'
+  # controllers
   'controllers/index'
   'controllers/sura'
-  'directives/view'
-  'directives/href'
+  # directives
+  'directives/misc'
   'directives/button'
+  # filters
   'filters/quran'
+  # responseInterceptors
   'responseInterceptors/dispatcher'
 ],
 

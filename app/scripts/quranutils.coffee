@@ -24,11 +24,11 @@ define ['lodash', 'utils'],
 
     # translate number to arabic.
     arab: (number) ->
-      _.to_s(number).replace /[0-9]/g, (w) -> arabicNums[+w]
+      _.str(number).replace /[0-9]/g, (w) -> arabicNums[+w]
 
     # Append suffixes to numbers.
     ordinal: (number) ->
-      number = _.to_i number
+      number = _.int number
       n = number % 100;
       suffix = _.words 'th st nd rd th'
       ord = if n < 21 then (if n < 4 then suffix[n] else suffix[0]) else (if n % 10 > 4 then suffix[0] else suffix[n % 10])

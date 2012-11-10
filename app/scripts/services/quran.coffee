@@ -39,19 +39,28 @@ define [
       data[key] = val[j] for key, j in infoVal.keys
       quran[newKey].push data
 
+  _name = (id) ->
+    if quran.suras.get(id) then quran.suras.get(id).get('name') else false
   _tname = (id) ->
-    if quran.suras.get(id)
-      quran.suras.get(id).get('tname')
-    else
-      false
+    if quran.suras.get(id) then quran.suras.get(id).get('tname') else false
 
   quran.suras.each (sura) ->
     sura.set
       permalink: qu.suraPermalink(sura.id)
-      next_link: qu.suraPermalink(sura.id + 1)
-      prev_link: qu.suraPermalink(sura.id - 1)
-      next_title: _tname(sura.id + 1)
-      prev_title: _tname(sura.id - 1)
+
+      # next sura
+      next: do ->
+        id = sura.id + 1
+        permalink: qu.suraPermalink id
+        name: _name id
+        tname: _tname id
+
+      # prev sura
+      prev: do ->
+        id = sura.id - 1
+        permalink: qu.suraPermalink id
+        name: _name id
+        tname: _tname id
 
   services.factory 'quran', -> quran
 

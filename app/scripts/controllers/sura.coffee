@@ -11,10 +11,7 @@ define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/
     console.info 'start aya:', $routeParams.aya
 
     # back to top
-    $('body').stop().scrollTo(duration: 0)
-
-    # remove any scroll event
-    $(window).off 'scroll'
+    $('body').scrollTo(duration: 0)
 
     # ========================================================================
     # models
@@ -36,17 +33,22 @@ define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/
     $scope.$watch 'ayas.loaded', ->
       console.log 'Ayas loaded:', $scope.ayas.loaded
 
+    $scope.currentAya = $routeParams.aya || 1
+
     # ========================================================================
     # functions
 
     $scope.top = ->
-      $('body').stop().scrollTo() if $(window).scrollTop() > 100
+      $('body').scrollTo() if $(window).scrollTop() > 100
 
-    # $scope.showSuras = ->
-    #   $('#topnav').addClass('slideup')
+    # ========================================================================
+    # events
 
-    # $scope.hideSuras = ->
-    #   $('#topnav').removeClass('slideup')
+    # remove any scroll event
+    $(window).off 'scroll'
+
+    # unbind key events
+    $(document).off('keypress').off('keyup')
 
     console.groupEnd()
 

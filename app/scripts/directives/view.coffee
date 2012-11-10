@@ -2,13 +2,14 @@ define ['libs/angular', 'directives/directives'],
 (angular, directives) ->
   'use strict'
 
-  directives.directive "qvView", ($http, $templateCache, $route, $anchorScroll, $compile, $controller) ->
+  directives.directive "myView", ($http, $templateCache, $route, $anchorScroll, $compile, $controller) ->
     restrict: "ECA"
     terminal: true
     link: (scope, parentElm, attr) ->
 
       # Create just an element for a partial
       createPartial = (template) ->
+
         # Create it this way because some templates give error
         # when you just do angular.element(template) (unknown reason)
         d = document.createElement("div")
@@ -33,7 +34,6 @@ define ['libs/angular', 'directives/directives'],
           $compile(partial.element.contents()) partial.scope
         parentElm.append partial.element
         partial.scope.$emit "$viewContentLoaded"
-
       destroyPartial = (partial) ->
         partial.scope.$destroy()
         partial.element.remove()
@@ -43,11 +43,12 @@ define ['libs/angular', 'directives/directives'],
       # http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js
       onTransitionEnd = (el, callback) ->
         i = 0
+
         while i < transEndEvents.length
           el[0].addEventListener transEndEvents[i], callback
           i++
-
       transition = (inPartial, outPartial) ->
+
         # Do a timeout so the initial class for the
         # element has time to 'take effect'
         setTimeout ->
@@ -58,19 +59,19 @@ define ['libs/angular', 'directives/directives'],
             onTransitionEnd outPartial.element, ->
               destroyPartial outPartial
 
+
       updatePartialQueue = ->
+
         # Bring in a new partial if it exists
         if partials.length > 0
           newPartial = partials.pop()
           setupPartial newPartial
           transition newPartial, currentPartial
           currentPartial = newPartial
-
       update = ->
         if $route.current and $route.current.locals.$template
           partials.unshift createPartial($route.current.locals.$template)
           updatePartialQueue()
-
       partials = []
       inClass = attr.inClass
       outClass = attr.outClass

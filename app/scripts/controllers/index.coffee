@@ -1,6 +1,6 @@
-define ['libs/store', 'controllers/controllers', 'services/quran', 'services/index'],
+define ['jquery', 'libs/store', 'controllers/controllers', 'services/quran', 'services/index'],
 
-(store, controllers) ->
+($, store, controllers) ->
   'use strict'
 
   controllers.controller 'index',
@@ -10,10 +10,7 @@ define ['libs/store', 'controllers/controllers', 'services/quran', 'services/ind
     console.group 'index controller'
 
     # back to top
-    $('body').stop().scrollTo(duration: 0)
-
-    # remove any scroll event
-    $(window).off 'scroll'
+    $('body').scrollTo(duration: 0)
 
     # ========================================================================
     # models
@@ -29,8 +26,8 @@ define ['libs/store', 'controllers/controllers', 'services/quran', 'services/ind
       attr: 'id'
       desc: false
 
-    # search string
-    $scope.search = ''
+    # filter string
+    $scope.filterText = ''
 
     sortToggles = ['id', 'tname', 'order', 'ayas:desc']
 
@@ -63,14 +60,32 @@ define ['libs/store', 'controllers/controllers', 'services/quran', 'services/ind
       else
         $scope.sort.attr == attr
 
-    $scope.filter = ->
-      if $scope.search.length >= 2 then $scope.search else ''
-
     $scope.filtered = ->
-      $filter('filter')($scope.suras.result, $scope.filter())
+      $filter('filter')($scope.suras.result, $scope.filterText)
 
-    $scope.clearSearch = ->
-      $scope.search = ''
+    $scope.clearFilter = ->
+      $scope.filterText = ''
+
+    # ========================================================================
+    # events
+
+    # remove any scroll event
+    $(window).off 'scroll'
+
+    searchBox = $('#filter')
+
+    $(document).on 'keypress', (e) ->
+      # focus the seach box on keypress
+      if !searchBox.is(":focus")
+        key = String.fromCharCode e.keyCode
+        if /[a-zA-Z0-9]/.test(key)
+          $scope.filterText = key
+          searchBox.focus()
+
+    $(document).on 'keyup', (e) ->
+      if e.keyCode == 27
+        searchBox.blur()
+        $scope.$apply -> $scope.clearFilter()
 
     console.groupEnd()
 

@@ -56,10 +56,6 @@ class App < Sinatra::Base
   # Helpers
   helpers do
     include Sinatra::ContentFor
-
-    def hasClass(className)
-      @body_class.split("\s+").include?(className)
-    end
   end
 
 end
