@@ -1,5 +1,5 @@
-define ['lodash', 'utils', 'directives/directives'],
-(_, utils, directives) ->
+define ['lodash', 'directives/directives'],
+(_, directives) ->
   'use strict'
 
   msie = _.int (/msie (\d+)/.exec(navigator.userAgent.toLowerCase()) || [])[1]
@@ -22,7 +22,7 @@ define ['lodash', 'utils', 'directives/directives'],
         attr.$set('title', value)
         element.prop('title', value) if msie
 
-  directives.directive 'clearInput', [->
+  directives.directive 'clearInput', ->
     restrict: 'A'
     link: (scope, element, attrs) ->
       button = $('<button class="clear-input"><i class="icon-remove-circle"></i></button>').hide()
@@ -33,4 +33,3 @@ define ['lodash', 'utils', 'directives/directives'],
 
       scope.$watch 'filterText', (val) ->
         button[if val.length > 0 then 'show' else 'hide']()
-  ]

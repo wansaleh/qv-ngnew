@@ -12,6 +12,9 @@ define ['jquery', 'libs/store', 'controllers/controllers', 'services/quran', 'se
     # back to top
     $('body').scrollTo(duration: 0)
 
+    # remove any scroll event
+    $(window).off 'scroll'
+
     # ========================================================================
     # models
 
@@ -68,9 +71,6 @@ define ['jquery', 'libs/store', 'controllers/controllers', 'services/quran', 'se
 
     # ========================================================================
     # events
-
-    # remove any scroll event
-    $(window).off 'scroll'
 
     searchBox = $('#filter')
 

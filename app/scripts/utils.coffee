@@ -47,16 +47,6 @@ define [
     where = Backbone.Collection::where
     -> _.first where.apply this, arguments
 
-  # jQuery small plugins
-  $.fn.scrollTo = (options = {}) ->
-    options = _.defaults options, { duration: 1000, callback: $.noop, offset: 0 }
-    $(this).each ->
-      $('body').stop().animate
-        scrollTop: $(this).offset().top + options.offset,
-        options.duration,
-        options.callback.bind this
-      this
-
   do ->
     # Expose underscore methods to native array
     # _ methods that we want to implement on Array.

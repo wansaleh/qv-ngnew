@@ -13,6 +13,9 @@ define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/
     # back to top
     $('body').scrollTo(duration: 0)
 
+    # remove any scroll event
+    $(window).off 'scroll'
+
     # ========================================================================
     # models
 
@@ -28,7 +31,8 @@ define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/
     sura.reset()
 
     $scope.overlay = true
-    sura.fetch $routeParams.sura, $routeParams.aya, -> $scope.overlay = false
+    sura.fetch $routeParams.sura, $routeParams.aya, ->
+      $scope.overlay = false
 
     $scope.$watch 'ayas.loaded', ->
       console.log 'Ayas loaded:', $scope.ayas.loaded
@@ -44,11 +48,13 @@ define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/
     # ========================================================================
     # events
 
-    # remove any scroll event
-    $(window).off 'scroll'
-
     # unbind key events
     $(document).off('keypress').off('keyup')
+
+    # hide empty ng-scopes
+    _.defer ->
+      $('span.ng-scope').each ->
+        $(this).hide() if !$(this).html().trim().length
 
     console.groupEnd()
 

@@ -82,6 +82,8 @@ define [
 
           # attach scroll event
           $win.on 'scroll', _lazyloader
+
+          # success
           success()
 
           _.defer ->

@@ -25,6 +25,8 @@ require [
   'app'
   'bootstrap'
   'qurandata'
+  'utils'
+  'plugins'
   # controllers
   'controllers/index'
   'controllers/sura'
