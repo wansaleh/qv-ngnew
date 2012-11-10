@@ -32,7 +32,7 @@ class App < Sinatra::Base
     :format       => :html5,
     :attr_wrapper => '"',
     :escape_attrs => false,
-    :preserve     => ["textarea", "pre", "code"]
+    :preserve     => %w{textarea pre code}
 
   # Compass and SASS options
   Compass.add_project_configuration root_path("config.rb")
