@@ -9,32 +9,34 @@ require.config
     'string-format': 'libs/string-format'
 
   shim:
-    'libs/angular':
-      deps: ['jquery']
-      exports: 'angular'
+    'libs/angular':          deps: ['jquery'], exports: 'angular'
     'libs/angular-resource': deps: ['libs/angular']
-    'libs/angular-ui': deps: ['libs/angular']
-    'libs/backbone':
-      deps: ['lodash', 'jquery']
-      exports: 'Backbone'
-    'underscore.string': deps: ['lodash']
-    'libs/bootstrap': deps: ['jquery']
+    'libs/angular-ui':       deps: ['libs/angular']
+    'libs/backbone':         deps: ['lodash', 'jquery'], exports: 'Backbone'
+    'underscore.string':     deps: ['lodash']
+    'libs/bootstrap':        deps: ['jquery']
 
 require [
   # essentials
   'app'
   'bootstrap'
+  'plugins'
   'qurandata'
   'utils'
-  'plugins'
+  'quranutils'
+
   # controllers
   'controllers/index'
   'controllers/sura'
+
   # directives
+  'directives/view'
   'directives/misc'
   'directives/button'
+
   # filters
   'filters/quran'
+
   # responseInterceptors
   'responseInterceptors/dispatcher'
 ],

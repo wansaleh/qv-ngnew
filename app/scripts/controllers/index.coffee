@@ -10,7 +10,7 @@ define ['jquery', 'libs/store', 'controllers/controllers', 'services/quran', 'se
     console.group 'index controller'
 
     # back to top
-    $('body').scrollTo(duration: 0)
+    window.scrollTo(0, 0)
 
     # remove any scroll event
     $(window).off 'scroll'

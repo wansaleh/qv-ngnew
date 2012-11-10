@@ -2,6 +2,48 @@ define ['libs/angular', 'directives/directives'],
 (angular, directives) ->
   'use strict'
 
+  directives.directive "theView",
+  ["$http", "$templateCache", "$route", "$anchorScroll", "$compile", "$controller",
+  ($http, $templateCache, $route, $anchorScroll, $compile, $controller) ->
+    restrict: "ECA"
+    terminal: true
+    link: (scope, element, attr) ->
+      destroyLastScope = ->
+        if lastScope
+          lastScope.$destroy()
+          lastScope = null
+      clearContent = ->
+        element.html ""
+        destroyLastScope()
+      update = ->
+        locals = $route.current and $route.current.locals
+        template = locals and locals.$template
+        if template
+          element.html template
+          destroyLastScope()
+          link = $compile(element.contents())
+          current = $route.current
+          controller = undefined
+          lastScope = current.scope = scope.$new()
+          if current.controller
+            locals.$scope = lastScope
+            controller = $controller(current.controller, locals)
+            element.contents().data "$ngControllerController", controller
+          link lastScope
+          lastScope.$emit "$viewContentLoaded"
+          lastScope.$eval onloadExp
+
+          # $anchorScroll might listen on event...
+          # $anchorScroll()
+        else
+          clearContent()
+      lastScope = undefined
+      onloadExp = attr.onload or ""
+      scope.$on "$routeChangeSuccess", update
+      update()
+  ]
+
+
   directives.directive "myView", ($http, $templateCache, $route, $anchorScroll, $compile, $controller) ->
     restrict: "ECA"
     terminal: true

@@ -11,7 +11,7 @@ define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/
     console.info 'start aya:', $routeParams.aya
 
     # back to top
-    $('body').scrollTo(duration: 0)
+    window.scrollTo(0, 0)
 
     # remove any scroll event
     $(window).off 'scroll'
@@ -34,16 +34,13 @@ define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/
     sura.fetch $routeParams.sura, $routeParams.aya, ->
       $scope.overlay = false
 
-    $scope.$watch 'ayas.loaded', ->
-      console.log 'Ayas loaded:', $scope.ayas.loaded
-
     $scope.currentAya = $routeParams.aya || 1
 
     # ========================================================================
     # functions
 
     $scope.top = ->
-      $('body').scrollTo() if $(window).scrollTop() > 100
+      $('body').scrl() if $(window).scrollTop() > 100
 
     # ========================================================================
     # events

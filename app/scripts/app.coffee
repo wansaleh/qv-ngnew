@@ -1,15 +1,18 @@
 define [
   # essentials
   'libs/angular'
+  'libs/angular-resource'
+  # 'libs/angular-ui'
   'jquery'
   'lodash'
   'underscore.string'
 
   # others
+  'qurandata'
   'utils'
   'quranutils'
-  'libs/angular-resource'
-  'libs/angular-ui'
+
+  # modules
   'controllers/controllers'
   'directives/directives'
   'filters/filters'
@@ -21,11 +24,11 @@ define [
   'use strict'
 
   angular.module 'app', [
-    'ui'
+    # 'ui'
+    'ngResource'
     'controllers'
     'directives'
     'filters'
-    'ngResource'
     'responseInterceptors'
     'services'
   ]

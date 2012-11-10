@@ -4,7 +4,7 @@ define ['jquery', 'lodash', 'utils'],
 
   $window = $(window)
 
-  $.fn.scrollTo = (options = {}) ->
+  $.fn.scrl = (options = {}) ->
     options = _.defaults options, { duration: 1000, callback: $.noop, offset: 0 }
     $(this).each ->
       $('body').stop().animate
@@ -13,39 +13,11 @@ define ['jquery', 'lodash', 'utils'],
         options.callback.bind this
       this
 
-  # screen positioning
-  # borrowed from https://github.com/tuupola/jquery_lazyload/blob/master/jquery.lazyload.js
-  $.belowthefold = (element, settings) ->
-    fold = undefined
-    if settings.container is `undefined` or settings.container is window
-      fold = $window.height() + $window.scrollTop()
-    else
-      fold = $(settings.container).offset().top + $(settings.container).height()
-    fold <= $(element).offset().top - settings.threshold
+  $.expr.filters.offscreen = (el) ->
+    ((el.offsetLeft + el.offsetWidth) < 0 or
+     (el.offsetTop + el.offsetHeight) < 0) or
+     (el.offsetLeft > window.innerWidth or
+     el.offsetTop > window.innerHeight)
 
-  $.rightoffold = (element, settings) ->
-    fold = undefined
-    if settings.container is `undefined` or settings.container is window
-      fold = $window.width() + $window.scrollLeft()
-    else
-      fold = $(settings.container).offset().left + $(settings.container).width()
-    fold <= $(element).offset().left - settings.threshold
-
-  $.abovethetop = (element, settings) ->
-    fold = undefined
-    if settings.container is `undefined` or settings.container is window
-      fold = $window.scrollTop()
-    else
-      fold = $(settings.container).offset().top
-    fold >= $(element).offset().top + settings.threshold + $(element).height()
-
-  $.leftofbegin = (element, settings) ->
-    fold = undefined
-    if settings.container is `undefined` or settings.container is window
-      fold = $window.scrollLeft()
-    else
-      fold = $(settings.container).offset().left
-    fold >= $(element).offset().left + settings.threshold + $(element).width()
-
-  $.inviewport = (element, settings) ->
-    not $.rightoffold(element, settings) and not $.leftofbegin(element, settings) and not $.belowthefold(element, settings) and not $.abovethetop(element, settings)
+  $.expr.filters.onscreen = (el) ->
+    not $.expr.filters.offscreen(el)

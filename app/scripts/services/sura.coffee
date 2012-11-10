@@ -88,8 +88,7 @@ define [
 
           _.defer ->
             if ayaId?
-              $("#aya-#{ayaId}").stop().scrollTo(offset: -100, duration: 0)
-
+              $("#aya-#{ayaId}").stop().scrl(offset: -100, duration: 0)
 
       _lazyloader = _.throttle ->
         _query() if $win.scrollTop() > $doc.height() - 2*$win.height() and

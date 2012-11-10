@@ -12,7 +12,7 @@
 
 / sura wrapper
 .sura-wrapper
-  .page-header.fixed(ng-click="top()")
+  .page-header.fixed
     .container
       .row
         .span12
@@ -34,18 +34,22 @@
                 ayas
 
             .btn-group
-              %abtn.prevnext.tip(type="primary small" my-href="{{suraInfo.prev.permalink}}" ui-if="suraInfo.prev.permalink")
+              %abtn.prevnext.tip(type="primary small" my-href="{{suraInfo.prev.permalink}}" if="suraInfo.prev.permalink")
                 %i.icon-chevron-left
                 %span
                   {{suraInfo.prev.tname}}
                   .arab {{suraInfo.prev.name}}
-              %abtn.prevnext.tip(type="primary small" my-href="{{suraInfo.next.permalink}}" ui-if="suraInfo.next.permalink")
+              %abtn.prevnext.tip(type="primary small" my-href="{{suraInfo.next.permalink}}" if="suraInfo.next.permalink")
                 %i.icon-chevron-right
                 %span
                   {{suraInfo.next.tname}}
                   .arab {{suraInfo.next.name}}
-              %abtn.home(type="primary small" my-href="/")
+              %abtn.top.tip(type="primary small" ng-click="top()")
+                %i.icon-chevron-up
+                %span Back to top
+              %abtn.home.tip(type="primary small" my-href="/")
                 %i.icon-home
+                %span Back to index
 
   / ayas container
   .ayas-container

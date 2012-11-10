@@ -239,6 +239,15 @@ body {
     .btn {
       margin-right: 0;
     }
+
+    .sort {
+      i {
+        @include transition(transform .4s ease);
+        &.inverse {
+          @include transform(rotate(180deg));
+        }
+      }
+    }
   }
 }
 
