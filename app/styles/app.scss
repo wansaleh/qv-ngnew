@@ -242,7 +242,7 @@ body {
 
     .sort {
       i {
-        @include transition(transform .4s ease);
+        @include transition(transform .5s ease);
         &.inverse {
           @include transform(rotate(180deg));
         }
