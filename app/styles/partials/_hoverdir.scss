@@ -1,0 +1,29 @@
+@import "compass";
+
+.da-animate {
+  @include transition(all 0.2s ceaser(easeOutQuart));
+}
+/* Initial state classes: */
+.da-slideFromTop {
+  left: 0px !important;
+  top: -100% !important;
+}
+.da-slideFromBottom {
+  left: 0px !important;
+  top: 100% !important;
+}
+.da-slideFromLeft {
+  top: 0px !important;
+  left: -100% !important;
+}
+.da-slideFromRight {
+  top: 0px !important;
+  left: 100% !important;
+}
+/* Final state classes: */
+.da-slideTop {
+  top: 0px !important;
+}
+.da-slideLeft {
+  left: 0px !important;
+}

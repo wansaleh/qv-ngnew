@@ -6,6 +6,7 @@ define [
   'jquery'
   'lodash'
   'underscore.string'
+  'plugins'
 
   # others
   'qurandata'

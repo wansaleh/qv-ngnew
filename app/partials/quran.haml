@@ -44,13 +44,17 @@
     .row
       .span12
         %nav.suras
-          %ul
+          %ul#hoverdir
             %li(ng-repeat="sura in (filtered() | orderBy:sort.attr:sort.desc)")
               %a(my-href="{{sura | permalink}}")
-                .primary
-                  %span.arab {{sura.name}}
-                  %span.id {{sura.id | pad}}
-                  %span.tname {{sura.tname}}
-                .secondary
-                  %span.ayas {{sura.ayas}} ayas, {{sura.order | ordinal}}
-                  %span.ename {{sura.ename | truncate:20}}
+
+                .firstview
+                  .primary
+                    %span.arab {{sura.name}}
+                    %span.id {{sura.id | pad}}
+                    %span.tname {{sura.tname}}
+                  .secondary
+                    %span.ayas {{sura.ayas}} ayas, {{sura.order | ordinal}}
+                    %span.ename {{sura.ename | truncate:20}}
+
+                .secondview

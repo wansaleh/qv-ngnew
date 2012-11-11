@@ -20,7 +20,6 @@ require [
   # essentials
   'app'
   'bootstrap'
-  'plugins'
   'qurandata'
   'utils'
   'quranutils'

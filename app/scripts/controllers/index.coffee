@@ -87,6 +87,10 @@ define ['jquery', 'libs/store', 'controllers/controllers', 'services/quran', 'se
         searchBox.blur()
         $scope.$apply -> $scope.clearFilter()
 
+    # jquery plugins
+    _.defer ->
+      # $('#hoverdir li').hoverdir()
+
     console.groupEnd()
 
   ]

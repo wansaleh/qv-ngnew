@@ -1,6 +1,9 @@
+// base font dir
+$fontDir: "/assets/fonts";
+
 // fonts
 @import "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,800,700,600";
-@import "/assets/fonts/ff-enzo-web.css";
+@import "#{$fontDir}/ff-enzo-web.css";
 
 // bootstrap
 @import "partials/variables";
@@ -12,7 +15,10 @@
 @import "ceaser-easing";
 
 // angular-ui
-@import "partials/angular-ui";
+// @import "partials/angular-ui";
+
+// hoverdir (codrops)
+// @import "partials/hoverdir";
 
 // =================================================================================================
 // webfonts
@@ -21,12 +27,22 @@
 @font-face {
   font-weight: normal;
   font-style: normal;
-  font-family: 'Scheherazade';
-  src: url('/assets/fonts/scheherazaderegot.eot');
-  src: url('/assets/fonts/scheherazaderegot.eot?#iefix') format('embedded-opentype'),
-       url('/assets/fonts/scheherazaderegot.woff') format('woff'),
-       url('/assets/fonts/scheherazaderegot.ttf') format('truetype'),
-       url('/assets/fonts/scheherazaderegot.svg#scheherazaderegot') format('svg');
+  font-family: "Scheherazade";
+  src: url("#{$fontDir}/scheherazaderegot.eot");
+  src: url("#{$fontDir}/scheherazaderegot.eot?#iefix") format("embedded-opentype"),
+       url("#{$fontDir}/scheherazaderegot.woff") format("woff"),
+       url("#{$fontDir}/scheherazaderegot.ttf") format("truetype"),
+       url("#{$fontDir}/scheherazaderegot.svg#scheherazaderegot") format("svg");
+}
+@font-face {
+  font-weight: bold;
+  font-style: normal;
+  font-family: "Scheherazade";
+  src: url("#{$fontDir}/scheherazaderegot.eot");
+  src: url("#{$fontDir}/scheherazaderegot.eot?#iefix") format("embedded-opentype"),
+       url("#{$fontDir}/scheherazaderegot.woff") format("woff"),
+       url("#{$fontDir}/scheherazaderegot.ttf") format("truetype"),
+       url("#{$fontDir}/scheherazaderegot.svg#scheherazaderegot") format("svg");
 }
 
 // =================================================================================================
