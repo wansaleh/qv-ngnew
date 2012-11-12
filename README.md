@@ -7,8 +7,8 @@ Served with Sinatra and DB abstraction by Sequel.
 
 Run:
 - Before anything: `bundle` to install all required gems.
-- `rake` for watchers
-- `rake s` for webserver (http://localhost:9292) and watchers. Also runs guard-reload.
+- `rake s` or just `rake` for webserver (http://localhost:9292) and watchers. Also runs guard-livereload.
+- `rake w` for watchers
 
 Gem dependencies:
 Have a look in the [Gemfile](https://github.com/wansaleh/qv-ngnew/blob/master/Gemfile).

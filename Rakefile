@@ -1,6 +1,6 @@
 task :default do
   puts "Run server/guard"
-  run_task "watch"
+  run_task "server"
 end
 
 desc "Start everything"
