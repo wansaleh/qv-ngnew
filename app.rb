@@ -34,6 +34,11 @@ class App < Sinatra::Base
     :escape_attrs => false,
     :preserve     => %w{textarea pre code}
 
+  # SLIM options
+  set :slim,
+    :format => :html5,
+    :pretty => true
+
   # Compass and SASS options
   Compass.add_project_configuration root_path("config.rb")
   set :scss, Compass.sass_engine_options

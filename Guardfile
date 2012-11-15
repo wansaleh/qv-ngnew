@@ -28,7 +28,7 @@ end
 
 # watch changes for livereloading
 guard 'livereload' do
-  watch(%r{.+\.(rb|html|haml)})
+  watch(%r{.+\.(rb|html|haml|slim)})
   watch(%r{^public/assets/(js|css)/.+$})
   # watch(%r{.+\.(rb|coffee|js|css|haml|erb|html)})
 end

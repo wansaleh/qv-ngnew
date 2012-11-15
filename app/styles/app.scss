@@ -66,10 +66,10 @@ body {
   position: relative;
 
   span {
-    @include transition(all 0.3s ceaser(easeInOutQuart));
+    @include transition(all 0.2s ceaser(easeInOutQuart));
     @include border-radius(5px);
     position: absolute;
-    top: 45px;
+    top: 40px;
     left: 50%;
     z-index: 20;
     margin-left: -70px;
@@ -515,7 +515,7 @@ body {
     .aya-wrapper {
       position: relative;
       padding: 3rem 0;
-      border-bottom: 3px solid #f8f8f8;
+      border-bottom: 1px solid rgba(#f8f8f8, 0.8);
       line-height: 1.7;
       @include transition(all 0.3s ease);
 

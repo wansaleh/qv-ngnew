@@ -43,7 +43,7 @@ require [
 
 (app) ->
 
-  tpl = (name) -> "/partials/#{name}.html?v=#{(new Date).getTime()}"
+  app.getTemplate = (name) -> "/partials/#{name}?v=#{(new Date).getTime()}"
 
   app.value 'html5', (html5 = true)
 
@@ -56,22 +56,22 @@ require [
     $routeProvider
       .when '/'
         controller: 'index'
-        templateUrl: tpl 'quran'
+        templateUrl: app.getTemplate 'quran.haml'
         reloadOnSearch: true
 
       .when '/index/:sort'
         controller: 'index'
-        templateUrl: tpl 'quran'
+        templateUrl: app.getTemplate 'quran.haml'
         reloadOnSearch: true
 
       .when '/sura/:sura'
         controller: 'sura'
-        templateUrl: tpl 'sura'
+        templateUrl: app.getTemplate 'sura.haml'
         reloadOnSearch: true
 
       .when '/sura/:sura/:aya'
         controller: 'sura'
-        templateUrl: tpl 'sura'
+        templateUrl: app.getTemplate 'sura.haml'
         reloadOnSearch: true
 
       .otherwise
