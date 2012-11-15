@@ -83,10 +83,10 @@ define [
           # attach scroll event
           $win.on 'scroll', _lazyloader
 
-          # success
-          success()
-
           _.defer ->
+            # success
+            success()
+
             if ayaId?
               $("#aya-#{ayaId}").stop().scrl(offset: -100, duration: 0)
 

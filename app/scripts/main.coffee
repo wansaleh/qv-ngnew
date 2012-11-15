@@ -15,6 +15,7 @@ require.config
     'libs/backbone':         deps: ['lodash', 'jquery'], exports: 'Backbone'
     'underscore.string':     deps: ['lodash']
     'libs/bootstrap':        deps: ['jquery']
+    'libs/jquery.jknav':     deps: ['jquery']
 
 require [
   # essentials

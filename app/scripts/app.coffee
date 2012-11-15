@@ -6,6 +6,8 @@ define [
   'jquery'
   'lodash'
   'underscore.string'
+
+  # jquery plugins
   'plugins'
 
   # others
