@@ -1,0 +1,62 @@
+.index-wrapper
+  .page-header.fixed
+    .container
+      .row
+        .span12
+          h1
+            a(my-href="/")
+              ' QuranVue
+              small Bismillahirrahmanirrahim
+              /! small.arab بسْم ٱللّه ٱلرّحْمٰن ٱلرّحيم
+
+          .links
+            .btn-group
+              abtn(type="primary small" ng-click="toggleSorting()")
+                i.icon-sort
+
+              abtn.sort(type="primary small" ng-class="{active: isSorting('id')}" ng-click="changeSorting('id')")
+                ' Order&nbsp;
+                i.icon-caret-up(ng-show="isSorting('id')" ng-class="{inverse: isSorting('id', true)}")
+
+              abtn.sort(type="primary small" ng-class="{active: isSorting('tname')}" ng-click="changeSorting('tname')")
+                ' Title&nbsp;
+                i.icon-caret-up(ng-show="isSorting('tname')" ng-class="{inverse: isSorting('tname', true)}")
+
+              abtn.sort(type="primary small" ng-class="{active: isSorting('order')}" ng-click="changeSorting('order')")
+                ' Revealed&nbsp;
+                i.icon-caret-up(ng-show="isSorting('order')" ng-class="{inverse: isSorting('order', true)}")
+
+              abtn.sort(type="primary small" ng-class="{active: isSorting('ayas')}" ng-click="changeSorting('ayas', true)")
+                ' Ayas&nbsp;
+                i.icon-caret-up(ng-show="isSorting('ayas')" ng-class="{inverse: isSorting('ayas', true)}")
+
+  .container
+    .row.search-bar
+      .span12
+        .sura-count.alert.alert-info(ng-class="{show: filterText.length}")
+          i.icon-info-sign
+          '
+          strong {{filtered().length}}
+          '
+          | suras found for "{{filterText}}".
+
+        .search
+          input#filter(type="text" placeholder="Filter suras&hellip;" ng-model="filterText" clear-input)
+
+    .row
+      .span12
+        nav.suras
+          ul#hoverdir
+            li(ng-repeat="sura in (filtered() | orderBy:sort.attr:sort.desc)")
+              a(my-href="{{sura | permalink}}")
+
+                .firstview
+                  .primary
+                    span.arab {{sura.name}}
+                    span.id {{sura.id | pad}}
+                    span.tname {{sura.tname}}
+                  .secondary
+                    span.ayas {{sura.ayas}} ayas, {{sura.order | ordinal}}
+                    span.ename {{sura.ename | truncate:20}}
+
+                .secondview
