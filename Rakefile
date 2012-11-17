@@ -8,7 +8,7 @@ task :watch do
   rm_rf './public/assets/js'
   rm_rf './public/assets/css'
   rm_rf './public/partials'
-  run_command 'powder restart', 'guard'
+  run_command 'guard'
 end
 
 desc "Start server"
