@@ -34,6 +34,8 @@ define ['jquery', 'libs/store', 'controllers/controllers', 'services/quran', 'se
 
     sortToggles = ['id', 'tname', 'order', 'ayas:desc']
 
+    $searchBox = $('#filter')
+
     # ========================================================================
     # functions
 
@@ -69,27 +71,29 @@ define ['jquery', 'libs/store', 'controllers/controllers', 'services/quran', 'se
     $scope.clearFilter = ->
       $scope.filterText = ''
 
+    $scope.focusSearch = ->
+      $searchBox.focus()
+
     # ========================================================================
     # events
 
-    searchBox = $('#filter')
-
     $(document).on 'keypress', (e) ->
       # focus the seach box on keypress
-      if !searchBox.is(":focus")
+      if !$searchBox.is(":focus")
         key = String.fromCharCode e.keyCode
         if /[a-zA-Z0-9]/.test(key)
           $scope.filterText = key
-          searchBox.focus()
+          $searchBox.focus()
 
     $(document).on 'keyup', (e) ->
       if e.keyCode == 27
-        searchBox.blur()
+        $searchBox.blur()
         $scope.$apply -> $scope.clearFilter()
 
-    # jquery plugins
-    _.defer ->
-      # $('#hoverdir li').hoverdir()
+    $('.search-result').on 'mousedown', (e) ->
+      $searchBox.focus()
+      e.stopPropagation()
+      return false
 
     console.groupEnd()
 

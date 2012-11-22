@@ -50,7 +50,10 @@
                     %span.id {{sura.id | pad}}
                     %span.tname {{sura.tname}}
                   .secondary
-                    %span.ayas {{sura.ayas}} ayas, {{sura.order | ordinal}}
+                    %span.ayas
+                      %span {{sura.ayas}}
+                      ayas,
+                      %span {{sura.order | ordinal}}
                     %span.ename {{sura.ename | truncate:20}}
 
                 .secondview

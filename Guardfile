@@ -12,7 +12,15 @@ guard 'shell',
 
   watch %r{^app/scripts/(.+\.(js|template))} do |m|
     # puts "File changed: #{m[0]}"
-    system "rsync -ar --exclude '.git' --exclude '.DS_Store' --exclude '*.coffee' app/scripts/ public/assets/js/"
+    system "rsync -ar --exclude '.git' --exclude '.DS_Store' --exclude '*.coffee' --exclude '*.ls' app/scripts/ public/assets/js/"
+  end
+
+  watch %r{^app/scripts/(.+\.ls)} do |m|
+    # puts "File changed: #{m[0]}"
+    src = m[0]
+    dest = File.dirname(m[0].sub("app/scripts/", "public/assets/js/"))
+    puts "src: #{src} | dest: #{dest}"
+    system "lsc -co #{dest} #{src}"
   end
 end
 

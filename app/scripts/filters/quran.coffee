@@ -45,3 +45,8 @@ define ['filters/filters', 'quranutils', 'utils', 'lodash'],
 
   filters.filter 'truncate', ->
     (string, length) -> _.prune string, length
+
+  filters.filter 'highlight', ->
+    (string, highlightString) ->
+      return unless highlightString?
+      _.str(string).replace(new RegExp(highlightString, 'g'), "<span class='highlight'>#{highlightString}</span>")

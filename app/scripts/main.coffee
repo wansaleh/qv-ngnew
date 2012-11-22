@@ -11,6 +11,7 @@ require.config
   shim:
     'libs/angular':          deps: ['jquery'], exports: 'angular'
     'libs/angular-resource': deps: ['libs/angular']
+    'libs/angular-sanitize': deps: ['libs/angular']
     'libs/angular-ui':       deps: ['libs/angular']
     'libs/backbone':         deps: ['lodash', 'jquery'], exports: 'Backbone'
     'underscore.string':     deps: ['lodash']

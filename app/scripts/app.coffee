@@ -2,6 +2,7 @@ define [
   # essentials
   'libs/angular'
   'libs/angular-resource'
+  'libs/angular-sanitize'
   # 'libs/angular-ui'
   'jquery'
   'lodash'
@@ -29,6 +30,7 @@ define [
   angular.module 'app', [
     # 'ui'
     'ngResource'
+    'ngSanitize'
     'controllers'
     'directives'
     'filters'

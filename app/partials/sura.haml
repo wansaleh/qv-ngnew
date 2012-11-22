@@ -2,13 +2,13 @@
 / .overlay(ng-show="overlay")
 
 / / sura-menu
-.sura-menu
-  %nav.suras
-    %ul
-      %li(ng-repeat="sura in suras.result")
-        %a(my-href="{{sura | permalink}}" ng-class="{active: suraInfo.id == sura.id}")
-          %span.arab {{sura.name}}
-          %span.tname {{sura.tname}}
+/ .sura-menu
+/   %nav.suras
+/     %ul
+/       %li(ng-repeat="sura in suras.result")
+/         %a(my-href="{{sura | permalink}}" ng-class="{active: suraInfo.id == sura.id}")
+/           %span.arab {{sura.name}}
+/           %span.tname {{sura.tname}}
 
 
 / sura wrapper
@@ -20,8 +20,9 @@
           %h1
             %a(my-href="/")
               {{suraInfo.tname}}
-              %small {{suraInfo.ename}}
-              %small.arab {{suraInfo.name}}
+              %small
+                {{suraInfo.ename}}
+                %span.arab {{suraInfo.name}}
 
           .links
             .non-btn-group
