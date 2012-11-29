@@ -17,6 +17,7 @@ require.config
     'underscore.string':     deps: ['lodash']
     'libs/bootstrap':        deps: ['jquery']
     'libs/jquery.jknav':     deps: ['jquery']
+    'libs/meny':             exports: 'Meny'
 
 require [
   # essentials
@@ -40,6 +41,9 @@ require [
 
   # responseInterceptors
   'responseInterceptors/dispatcher'
+
+  # misc
+  'libs/meny'
 ],
 
 (app) ->

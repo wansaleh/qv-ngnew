@@ -1,25 +1,24 @@
-define ['jquery', 'libs/store', 'controllers/controllers', 'services/quran', 'services/index'],
-
-($, store, controllers) ->
+define ['jquery' 'libs/store' 'controllers/controllers' 'services/quran' 'services/index'],
+!($, store, controllers) ->
   'use strict'
 
   controllers.controller 'index',
-  ['$scope', '$rootScope', '$routeParams', '$filter', 'quran', 'index'
-  ($scope, $rootScope, $routeParams, $filter, quran, index) ->
+  ['$scope' '$rootScope' '$routeParams' '$filter' 'quran' 'index'
+  !($scope, $rootScope, $routeParams, $filter, quran, index) ->
 
     console.group 'index controller'
 
     # back to top
-    window.scrollTo(0, 0)
+    window.scrollTo 0, 0
 
     # remove any scroll event
-    $(window).off 'scroll'
+    $ window .off 'scroll'
 
     # ========================================================================
     # models
 
     # set title
-    $rootScope.pageTitle = "Index"
+    $rootScope.pageTitle = 'Index'
 
     # suras
     $scope.suras = index.suras
@@ -32,9 +31,9 @@ define ['jquery', 'libs/store', 'controllers/controllers', 'services/quran', 'se
     # filter string
     $scope.filterText = ''
 
-    sortToggles = ['id', 'tname', 'order', 'ayas:desc']
+    sortToggles = ['id' 'tname' 'order' 'ayas:desc']
 
-    $searchBox = $('#filter')
+    $searchBox = $ '#filter'
 
     # ========================================================================
     # functions
@@ -66,35 +65,35 @@ define ['jquery', 'libs/store', 'controllers/controllers', 'services/quran', 'se
         $scope.sort.attr == attr
 
     $scope.filtered = ->
-      $filter('filter')($scope.suras.result, $scope.filterText)
+      $filter('filter') $scope.suras.result, $scope.filterText
 
     $scope.clearFilter = ->
       $scope.filterText = ''
 
     $scope.focusSearch = ->
-      $searchBox.focus()
+      $searchBox.focus!
 
     # ========================================================================
     # events
 
-    $(document).on 'keypress', (e) ->
+    $ document .on 'keypress' (e) ->
       # focus the seach box on keypress
       if !$searchBox.is(":focus")
         key = String.fromCharCode e.keyCode
         if /[a-zA-Z0-9]/.test(key)
           $scope.filterText = key
-          $searchBox.focus()
+          $searchBox.focus!
 
-    $(document).on 'keyup', (e) ->
+    $ document .on 'keyup' (e) ->
       if e.keyCode == 27
-        $searchBox.blur()
-        $scope.$apply -> $scope.clearFilter()
+        $searchBox.blur!
+        $scope.$apply -> $scope.clearFilter!
 
-    $('.search-result').on 'mousedown', (e) ->
-      $searchBox.focus()
-      e.stopPropagation()
+    $ '.search-result' .on 'mousedown' (e) ->
+      $searchBox.focus!
+      e.stopPropagation!
       return false
 
-    console.groupEnd()
+    console.groupEnd!
 
   ]

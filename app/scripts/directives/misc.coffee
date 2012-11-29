@@ -42,11 +42,11 @@ define ['lodash', 'utils', 'directives/directives'],
 
   # if
   # ============================================================================
-  directives.directive "if", [->
-    transclude: "element"
+  directives.directive 'if', [->
+    transclude: 'element'
     priority: 1000
     terminal: true
-    restrict: "A"
+    restrict: 'A'
     compile: (element, attr, linker) ->
       (scope, iterStartElement, attr) ->
         iterStartElement[0].doNotMove = true
@@ -69,6 +69,14 @@ define ['lodash', 'utils', 'directives/directives'],
 
           # Note: need to be parent() as jquery cannot trigger events on comments
           # (angular creates a comment node when using transclusion, as ng-repeat does).
-          iterStartElement.parent().trigger "$childrenChanged"
-
+          iterStartElement.parent().trigger '$childrenChanged'
   ]
+
+  # scrollTop
+  # ============================================================================
+  directives.directive 'scrollTop', ->
+    priority: 99, # it needs to run after the attributes are interpolated
+    link: (scope, element, attr) ->
+      $menu = angular.element('.sura-menu')
+      scope.$watch attr.scrollTop, (newValue) ->
+        $menu.scrollTop(element.position().top) if _.bool(newValue)

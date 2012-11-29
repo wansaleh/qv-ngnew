@@ -4,6 +4,7 @@ define ['jquery', 'lodash', 'utils'],
 
   $window = $(window)
 
+  # scroller
   $.fn.scrl = (options = {}) ->
     options = _.defaults options, { duration: 1000, callback: $.noop, offset: 0 }
     $(this).each ->
@@ -13,6 +14,7 @@ define ['jquery', 'lodash', 'utils'],
         options.callback.bind this
       this
 
+  # on/off screen check
   $.expr.filters.offscreen = (el) ->
     ((el.offsetLeft + el.offsetWidth) < 0 or
      (el.offsetTop + el.offsetHeight) < 0) or

@@ -32,15 +32,25 @@ define [
     str: (obj) ->
       (new String obj).toString()
 
+    # force obj to boolean
+    bool: (value) ->
+      if value && value.length != 0
+        v = ("" + value).toLowerCase()
+        value = !(v == 'f' || v == '0' || v == 'false' || v == 'no' || v == 'n' || v == '[]')
+      else
+        value = false
+      value
+
   # Extend underscore.
   _.mixin _.extend(_str, utils)
 
   # patch _.each, to include _.words
-  patch _, 'each', (old, self, args) ->
-    args = Array::slice.call(args)
-    obj = args.shift()
-    obj = _.words obj if _.isString obj
-    old.apply self, [obj].concat(args)
+  # underscore = _
+  # patch underscore, 'each', (old, self, args) ->
+  #   args = Array::slice.call(args)
+  #   obj = args.shift()
+  #   obj = underscore.words obj if _.isString obj
+  #   old.apply self, [obj].concat(args)
 
   # patch Backbone.Collection to include whereFirst
   Backbone.Collection::whereFirst = do ->

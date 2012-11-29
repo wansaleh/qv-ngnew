@@ -1,15 +1,11 @@
-/ overlay
-/ .overlay(ng-show="overlay")
-
-/ / sura-menu
-/ .sura-menu
-/   %nav.suras
-/     %ul
-/       %li(ng-repeat="sura in suras.result")
-/         %a(my-href="{{sura | permalink}}" ng-class="{active: suraInfo.id == sura.id}")
-/           %span.arab {{sura.name}}
-/           %span.tname {{sura.tname}}
-
+/ .meny
+/   .sura-menu
+/     %nav
+/       %ul
+/         %li(ng-repeat="sura in suras.result")
+/           %a(my-href="{{sura | permalink}}" ng-class="{active: suraInfo.id == sura.id}" scroll-top="suraInfo.id == sura.id")
+/             %span.arab {{sura.name}}
+/             %span.tname {{sura.tname}}
 
 / sura wrapper
 .sura-wrapper
