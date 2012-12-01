@@ -1,6 +1,11 @@
+###
+
+jQuery plugins
+
+###
+
 define ['jquery', 'lodash', 'utils'],
 ($, _, utils) ->
-  # jQuery small plugins
 
   $window = $(window)
 
@@ -70,25 +75,17 @@ define ['jquery', 'lodash', 'utils'],
     # credits : http://stackoverflow.com/a/3647634
     _getDir: ($el, coordinates) ->
 
-      ###
-      the width and height of the current div *
-      ###
+      # the width and height of the current div *
       w = $el.width()
       h = $el.height()
 
-      ###
-      calculate the x and y to get an angle to the center of the div from that x and y. *
-      ###
+      # calculate the x and y to get an angle to the center of the div from that x and y. *
 
-      ###
-      gets the x value relative to the center of the DIV and "normalize" it *
-      ###
+      # gets the x value relative to the center of the DIV and "normalize" it *
       x = (coordinates.x - $el.offset().left - (w / 2)) * ((if w > h then (h / w) else 1))
       y = (coordinates.y - $el.offset().top - (h / 2)) * ((if h > w then (w / h) else 1))
 
-      ###
-      the angle and the direction from where the mouse came in/went out clockwise (TRBL=0123);*
-      ###
+      # the angle and the direction from where the mouse came in/went out clockwise (TRBL=0123);*
 
       ###
       first calculate the angle of the point,
