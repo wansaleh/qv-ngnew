@@ -92,7 +92,7 @@ define ['jquery', 'libs/store', 'controllers/controllers', 'services/quran', 'se
     $('.search-result').on 'mousedown', (e) ->
       $searchBox.focus()
       e.stopPropagation()
-      return false
+      false
 
     console.groupEnd()
 

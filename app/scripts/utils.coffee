@@ -17,8 +17,34 @@ define [
 
   utils =
     # ruby's Array.sample :P
-    sample: (array) ->
-      if _.isArray array then _.first(_.shuffle(array)) else array
+    sample: (array, n, guard) ->
+      return array[Math.floor(Math.random() * array.length)]  if not n? or guard
+      n = Math.max(0, Math.min(array.length, n))
+      (pickR = (array, n, length) ->
+        i = undefined
+        picked = undefined
+        rest = undefined
+        hasIndex = undefined
+        return []  if n is 0
+        i = Math.floor(Math.random() * length)
+        hasIndex = array.hasOwnProperty(i) # This is needed for restoration of dense arrays
+        picked = array[i]
+        array[i] = array[length - 1]
+        rest = pickR(array, n - 1, length - 1)
+
+        # Restore array
+        if hasIndex
+          array[i] = picked
+        else
+          delete array[i]
+        rest.push picked
+        rest
+      ) array, n, array.length
+
+    # setInterval wrapper
+    interval: (func, wait) ->
+      args = Array::slice.call(arguments, 2)
+      setInterval (-> func.apply null, args), wait
 
     # force obj to integer
     int: (obj, base = 10) ->
@@ -36,10 +62,9 @@ define [
     bool: (value) ->
       if value && value.length != 0
         v = ("" + value).toLowerCase()
-        value = !(v == 'f' || v == '0' || v == 'false' || v == 'no' || v == 'n' || v == '[]')
+        !(v == 'f' || v == '0' || v == 'false' || v == 'no' || v == 'n' || v == '[]')
       else
-        value = false
-      value
+        false
 
   # Extend underscore.
   _.mixin _.extend(_str, utils)

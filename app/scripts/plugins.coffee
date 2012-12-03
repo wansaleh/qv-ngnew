@@ -9,6 +9,9 @@ define ['jquery', 'lodash', 'utils'],
 
   $window = $(window)
 
+  # isEmpty
+  $.fn.isEmpty = -> _.trim($(this).html()).length == 0
+
   # scroller
   $.fn.scrl = (options = {}) ->
     options = _.defaults options, { duration: 1000, callback: $.noop, offset: 0 }

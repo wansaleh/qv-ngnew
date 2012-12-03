@@ -17,7 +17,6 @@ require.config
     'underscore.string':     deps: ['lodash']
     'libs/bootstrap':        deps: ['jquery']
     'libs/jquery.jknav':     deps: ['jquery']
-    'libs/meny':             exports: 'Meny'
 
 require [
   # essentials
@@ -41,14 +40,11 @@ require [
 
   # responseInterceptors
   'responseInterceptors/dispatcher'
-
-  # misc
-  'libs/meny'
 ],
 
 (app) ->
 
-  app.getTemplate = (name) -> "/partials/#{name}?v=#{(new Date).getTime()}"
+  getTemplate = (name) -> "/partials/#{name}?v=#{(new Date).getTime()}"
 
   app.value 'html5', (html5 = true)
 
@@ -61,23 +57,23 @@ require [
     $routeProvider
       .when '/'
         controller: 'index'
-        templateUrl: app.getTemplate 'quran.haml'
-        reloadOnSearch: true
+        templateUrl: getTemplate 'quran.haml'
+        # reloadOnSearch: true
 
       .when '/index/:sort'
         controller: 'index'
-        templateUrl: app.getTemplate 'quran.haml'
-        reloadOnSearch: true
+        templateUrl: getTemplate 'quran.haml'
+        # reloadOnSearch: true
 
       .when '/sura/:sura'
         controller: 'sura'
-        templateUrl: app.getTemplate 'sura.haml'
-        reloadOnSearch: true
+        templateUrl: getTemplate 'sura.haml'
+        # reloadOnSearch: true
 
       .when '/sura/:sura/:aya'
         controller: 'sura'
-        templateUrl: app.getTemplate 'sura.haml'
-        reloadOnSearch: true
+        templateUrl: getTemplate 'sura.haml'
+        # reloadOnSearch: true
 
       .otherwise
         redirectTo: '/'

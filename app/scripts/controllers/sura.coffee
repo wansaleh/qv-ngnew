@@ -1,5 +1,5 @@
-define ['jquery', 'libs/meny', 'app', 'controllers/controllers', 'services/quran', 'services/sura'],
-($, Meny, app, controllers) ->
+define ['jquery', 'app', 'controllers/controllers', 'services/quran', 'services/sura'],
+($, app, controllers) ->
   'use strict'
 
   controllers.controller 'sura',
@@ -30,8 +30,7 @@ define ['jquery', 'libs/meny', 'app', 'controllers/controllers', 'services/quran
     sura.reset()
 
     $scope.overlay = true
-    sura.fetch $routeParams.sura, $routeParams.aya, ->
-      $scope.overlay = false
+    sura.fetch $routeParams.sura, $routeParams.aya, -> $scope.overlay = false
 
     $scope.currentAya = $routeParams.aya || 1
 
@@ -47,11 +46,11 @@ define ['jquery', 'libs/meny', 'app', 'controllers/controllers', 'services/quran
     # unbind key events
     $(document).off('keypress').off('keyup')
 
-    _.defer ->
-      # hide empty ng-scopes
-      $('span.ng-scope').each ->
-        $(this).remove() if !$(this).html().trim().length
-        # $(this).hide() if !$(this).html().trim().length
+    # hide empty ng-scopes
+    _.delay (->
+      $('.page-header .links span.ng-scope').each ->
+        $(this).hide() if $(this).isEmpty()
+    ), 50
 
     console.groupEnd()
 
